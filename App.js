@@ -1,21 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// import { StyleSheet, Text, View } from 'react-native';
+import styled from "styled-components";
+import { NativeRouter, Route, Link } from "react-router-native";
+import Navbar from './src/components/Navbar'
+import { EdgeInsetsPropType } from 'react-native';
+import Header from './src/components/Header'
+import Welcome from './src/pages/WelcomePage'
 
-export default function App() {
+function App() {
+
+
+  const Body = styled.View`
+    background-color: #5D5FEF;
+    flex:1;
+  `
+
+  const Main = styled.ScrollView`
+  `
+
+  
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeRouter> 
+      <Body> 
+        <Header></Header>
+        <Main>
+          <Welcome/>
+        </Main>
+        <Navbar></Navbar>
+      </Body>
+    </NativeRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
