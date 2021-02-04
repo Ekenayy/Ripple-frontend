@@ -10,7 +10,7 @@ function ChallengeList () {
       `
     
         return (
-            <MainText>ChallengeList</MainText>
+            <MainText>Hello from the ChallengeList</MainText>
         )
     }
     

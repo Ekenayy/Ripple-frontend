@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from 'styled-components';
+import styled from 'styled-components';
 
 function SignUp () {
     const H1 = styled.Text`
@@ -7,7 +7,7 @@ function SignUp () {
     color: blue;
     `
     return (
-        <Text>SignUp</Text>
+        <H1>SignUp</H1>
     )
 }
 
