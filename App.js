@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { StyleSheet, Text, View } from 'react-native';
 import styled from "styled-components";
 import { NativeRouter, Switch, Route, Link } from "react-router-native";
@@ -16,6 +16,13 @@ import CreateChallenge from './src/pages/CreateChallenge'
 
 function App() {
 
+  const [challenges, setChallenges] = useState([])
+
+  useEffect(() => {
+    fetch(`http://ekene-0b01ca64.localhost.run/challenges`)
+      .then(r => r.json())
+      .then(data => setChallenges(data))
+  }, [])
 
   const Body = styled.View`
     background-color: #5D5FEF;
@@ -33,13 +40,27 @@ function App() {
         <Header/>
         <Main>
           <Switch>
-            <Route exact path='/' component={Welcome}/>
-            <Route exact path='/user/:id' component={Profile}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/signup' component={SignUp}/>
-            <Route exact path='/challenges' component={ChallengeList}/>
-            <Route exact path='/challenges/:id' component={ChallengeShow}/>
-            <Route exact path='/challenges/create' component={CreateChallenge}/>
+            <Route exact path='/'>
+              <Welcome/>
+            </Route>
+            <Route exact path='/user/:id'>
+              <Profile/>
+            </Route>
+            <Route exact path='/login'>
+              <Login/>
+            </Route>
+            <Route exact path='/signup'>
+              <SignUp/>
+            </Route>
+            <Route exact path='/challenges'>
+              <ChallengeList challenges={challenges}/>
+            </Route> 
+            <Route exact path='/challenges/:id'>
+              <ChallengeShow/>
+            </Route> 
+            <Route exact path='/challenges/create'>
+              <CreateChallenge/>
+            </Route> 
           </Switch> 
         </Main>
         <Navbar/>
