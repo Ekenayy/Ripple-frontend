@@ -5,6 +5,7 @@ import ChallengeItem from '../components/ChallengeItem'
 
 function ChallengeList ( {challenges} ) {
 
+
     const MainText = styled.Text`
       font-size: 24px;
       color: #F7F8F3;

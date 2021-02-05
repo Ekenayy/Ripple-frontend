@@ -17,11 +17,18 @@ import CreateChallenge from './src/pages/CreateChallenge'
 function App() {
 
   const [challenges, setChallenges] = useState([])
+  const [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
     fetch(`http://ekene-0b01ca64.localhost.run/challenges`)
       .then(r => r.json())
       .then(data => setChallenges(data))
+  }, [])
+
+  useEffect(() => {
+    fetch(`http://ekene-0b01ca64.localhost.run/users/fake`)
+      .then(r => r.json())
+      .then(user => setCurrentUser(user))
   }, [])
 
   const Body = styled.View`
@@ -56,7 +63,7 @@ function App() {
               <ChallengeList challenges={challenges}/>
             </Route> 
             <Route exact path='/challenges/:id'>
-              <ChallengeShow/>
+              <ChallengeShow currentUser={currentUser}/>
             </Route> 
             <Route exact path='/challenges/create'>
               <CreateChallenge/>
