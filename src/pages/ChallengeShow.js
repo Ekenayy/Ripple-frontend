@@ -2,6 +2,8 @@ import React, {useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useParams, useHistory } from "react-router-dom";
 import YouTube from 'react-native-youtube'
+import { BASE_URL } from '@env'
+
 
 function ChallengeShow ( {currentUser }) {
 
@@ -16,7 +18,7 @@ function ChallengeShow ( {currentUser }) {
   let youtubeId
 
   useEffect(() => {
-    fetch(`http://ekene-0b01ca64.localhost.run/challenges/${params.id}`)
+    fetch(`${BASE_URL}/challenges/${params.id}`)
           .then(res => res.json())
           .then(data => setChallenge(data))
           .then(() => {
@@ -31,9 +33,6 @@ function ChallengeShow ( {currentUser }) {
       font-size: 12px;
       color: #F7F8F3;
       `
-    
-    const VideoView = styled.SafeAreaView`
-    `
 
     const TestView = styled.View`
       padding: 12px;
@@ -60,6 +59,7 @@ function ChallengeShow ( {currentUser }) {
       padding: 12px;
     `
 
+    // Return statement and functions are wrapped in a conditional 
   if (challenge) {
     const url = challenge.video_url
     const lastPart = url.split("=")
@@ -68,8 +68,8 @@ function ChallengeShow ( {currentUser }) {
     const allTasks = challenge.task_challenges.map(tc => {
       // debugger 
       return (
-      <TestView>      
-        <MainText key={tc.task.id}>{tc.task.description}</MainText>
+      <TestView >      
+        <MainText>{tc.task.description}</MainText>
       </TestView>
       )
   })
@@ -83,13 +83,39 @@ function ChallengeShow ( {currentUser }) {
       completed: false
   }
 
-    fetch(`http://ekene-0b01ca64.localhost.run/user_challenges`, {
+    fetch(`${BASE_URL}/user_challenges`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formBody)
     })
       .then(res => res.json())
-      .then(data => setUserChallenge(data))
+      .then(fetchedUserChallenge => {
+        setUserChallenge(fetchedUserChallenge)
+        createUTC(fetchedUserChallenge)
+      })
+  }
+
+  const createUTC = (ucFromDb) => {
+    console.log(ucFromDb)
+
+    let task_challenges = ucFromDb.challenge.task_challenges
+    task_challenges.forEach(tc => {
+
+      let formBody = {
+        user_challenge_id: ucFromDb.id,
+        description: tc.task.description,
+        completed: false
+      }
+
+      fetch(`${BASE_URL}/user_task_challenges`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(formBody)
+      })
+        .then(res => res.json())
+        .then(userTaskChallenge => console.log(userTaskChallenge))
+    })
+
   }
 
   
@@ -106,10 +132,13 @@ function ChallengeShow ( {currentUser }) {
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
           {allTasks}
-          {/* Conditionally rendering based off of custom serializer attribute */}
-          {currentUser.challenge_names.includes(challenge.description) ? null : <Button onPress={handlePress}>
+          <Button onPress={handlePress}>
             <Span>Take this challenge</Span>
-          </Button>}
+          </Button>
+          {/* Conditionally rendering based off of custom serializer attribute */}
+          {/* {currentUser.challenge_ids.includes(challenge.id) ? null : <Button onPress={handlePress}>
+            <Span>Take this challenge</Span>
+          </Button>} */}
         </>
         )
       }

@@ -40,6 +40,9 @@ function Navbar () {
             <Link style={styles.navItem} to='/signup'>
                 <NavText>SignUp</NavText>
             </Link>
+            <Link style={styles.navItem} to='/user/:id'>
+                <NavText>Profile</NavText>
+            </Link>
         </Nav>
     )
 }

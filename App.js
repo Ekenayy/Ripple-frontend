@@ -13,6 +13,7 @@ import Profile from './src/pages/Profile'
 import SignUp from './src/pages/SignUp'
 import ChallengeShow from './src/pages/ChallengeShow'
 import CreateChallenge from './src/pages/CreateChallenge'
+import { BASE_URL } from '@env'
 
 function App() {
 
@@ -20,13 +21,19 @@ function App() {
   const [currentUser, setCurrentUser] = useState()
 
   useEffect(() => {
-    fetch(`http://ekene-0b01ca64.localhost.run/challenges`)
+    fetch(`${BASE_URL}/challenges`)
       .then(r => r.json())
       .then(data => setChallenges(data))
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+         // ADD THIS THROW error
+          throw error;
+        });
   }, [])
 
+  
   useEffect(() => {
-    fetch(`http://ekene-0b01ca64.localhost.run/users/fake`)
+    fetch(`${BASE_URL}/fake`)
       .then(r => r.json())
       .then(user => setCurrentUser(user))
   }, [])
@@ -51,13 +58,13 @@ function App() {
               <Welcome/>
             </Route>
             <Route exact path='/user/:id'>
-              <Profile/>
+              <Profile currentUser={currentUser}/>
             </Route>
             <Route exact path='/login'>
               <Login/>
             </Route>
             <Route exact path='/signup'>
-              <SignUp/>
+              <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path='/challenges'>
               <ChallengeList challenges={challenges}/>
