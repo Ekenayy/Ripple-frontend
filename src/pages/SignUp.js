@@ -3,10 +3,8 @@ import styled from 'styled-components';
 
 function SignUp ( {currentUser, setCurrentUser }) {
 
-     const [formData, setFormData] = useState({
-         name: "",
-         email: ""
-     })
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("")
 
     const Form = styled.View`
     padding-left:12px;
@@ -41,16 +39,26 @@ function SignUp ( {currentUser, setCurrentUser }) {
     color: #F7F8F3
     padding: 12px;
     `
-    const handleChange = (text) => {
-    }
+    
 
     return (
         <Form> 
             <TitleView>            
                 <FormTitle>Sign Up</FormTitle>
             </TitleView>
-            <Input/> 
-            <Input/>
+            <Input 
+                placeholder='Name...'
+                onChangeText={(val) => setName(val)}
+                value={name}
+                blurOnSubmit={false}
+                // autoFocus={true}
+            /> 
+            <Input
+                placeholder='Email...'
+                onChangeText={(val) => setEmail(val)}
+                value={email}
+                // autoFocus={true}
+            />
             <Button>
                 <Span>Create account</Span>
             </Button>       

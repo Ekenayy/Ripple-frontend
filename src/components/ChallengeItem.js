@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import { Route, Link } from "react-router-native";
 import { useHistory } from "react-router-dom";
-import { STouchableOpacity, TouchableOpacity} from "react-native";
+import { TouchableOpacity} from "react-native";
 
 function ChallengeItem ( {challenge} ) {
 
@@ -24,11 +23,13 @@ function ChallengeItem ( {challenge} ) {
         height:64px;
     `
     const Details = styled.View`
+        width: 150px;
     `
 
     const Name = styled.Text`
         font-size: 18px;
         font-weight:500;
+        color: #F7F8F3;
     `
     return (
 

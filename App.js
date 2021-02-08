@@ -26,7 +26,6 @@ function App() {
       .then(data => setChallenges(data))
       .catch(function(error) {
         console.log('There has been a problem with your fetch operation: ' + error.message);
-         // ADD THIS THROW error
           throw error;
         });
   }, [])
@@ -58,7 +57,7 @@ function App() {
               <Welcome/>
             </Route>
             <Route exact path='/user/:id'>
-              <Profile currentUser={currentUser}/>
+              <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
             </Route>
             <Route exact path='/login'>
               <Login/>

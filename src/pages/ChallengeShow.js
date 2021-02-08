@@ -132,13 +132,11 @@ function ChallengeShow ( {currentUser }) {
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
           {allTasks}
+          {/* Conditionally rendering based off of custom serializer attribute */}
+          {currentUser.challenge_ids.includes(challenge.id) ? null : 
           <Button onPress={handlePress}>
             <Span>Take this challenge</Span>
-          </Button>
-          {/* Conditionally rendering based off of custom serializer attribute */}
-          {/* {currentUser.challenge_ids.includes(challenge.id) ? null : <Button onPress={handlePress}>
-            <Span>Take this challenge</Span>
-          </Button>} */}
+          </Button>}
         </>
         )
       }
