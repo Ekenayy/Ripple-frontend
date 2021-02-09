@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { BASE_URL } from '@env'
 import UserChallengeItem from '../components/UserChallengeItem'
+import {useParams, useHistory } from "react-router-dom";
+
 
 function Profile ( {currentUser, setCurrentUser}) {
 
@@ -10,12 +12,32 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [userChall, setUserChall] = useState([])
     const [selected, setSeleted] = useState([])
 
+    let params = useParams()
+    let formId
+
+// If this user has just signed up the params id will be a number,
+// If the user clicks the profile button on the nav, params will be NaN which is falsy
+    
+    if (parseInt(params)) {
+      formId = parseInt(params)
+    } else {
+      formId = currentUser.id
+    }
+    
       useEffect(() => {
+            fetch(`${BASE_URL}/users/${formId}`)
+              .then(r => r.json())
+              .then(thisUser => console.log(thisUser))
+          }, [])
+
+      useEffect(() => {
+        console.log(formId)
+
         fetch(`${BASE_URL}/my_user_challenges`, {
                   method: "POST",
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify({
-                    user_id: currentUser.id
+                    user_id: formId
                   })
                 })
                   .then(res => res.json())
@@ -85,13 +107,15 @@ function Profile ( {currentUser, setCurrentUser}) {
       const ChallengeView = styled.View`
       `
 
-
       
       if (userChall) {
 
         const userChallengeList = userChall.map(uc => {
           return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
         })
+
+        // console.log(parseInt(params))
+        // console.log(currentUser.id)
 
         return (
           <Container>

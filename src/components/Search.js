@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 function Search () {
+
+    const [searched, setSearched] = useState("Search by genre")
 
     const Form = styled.View`
         padding:12px;

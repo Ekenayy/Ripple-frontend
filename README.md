@@ -8,5 +8,7 @@
 
 <!-- 1. Get Android emulator  -->
 <!-- 2. Fetch data with these -->
-3. Test out endpoints and use .env global var
+<!-- 3. Test out endpoints and use .env global var -->
 <!-- 4. Finalize post request for UTC -->
+
+1. Fix Problem with setting Current user after using useEffect -- Page keeps reloading 

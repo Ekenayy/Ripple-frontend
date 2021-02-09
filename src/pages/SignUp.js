@@ -1,10 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
+import { Alert } from 'react-native'
+import {useForm} from 'react-hook-form'
+import { BASE_URL, HEADERS } from '@env'
+import { useHistory } from "react-router-dom";
+
 
 function SignUp ( {currentUser, setCurrentUser }) {
 
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
+    // const [name, onChangeName] = useState("Name..")
+    // const [email, onChangeEmail] = useState("Email..")
+    let history = useHistory()
+    
+    const {register, handleSubmit, setValue} = useForm()
+
+    useEffect(() => {
+        register('name')
+        register('email')
+        register('picture')
+    }, [register])
 
     const Form = styled.View`
     padding-left:12px;
@@ -39,30 +53,48 @@ function SignUp ( {currentUser, setCurrentUser }) {
     color: #F7F8F3
     padding: 12px;
     `
-    
+    const onSubmit = data => {
+        let formBody = {
+            name: data.name,
+            email: data.email,
+            picture: data.picture
+        }
+
+
+        fetch(`${BASE_URL}/users/create`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formBody)
+        })
+            .then(r => r.json())
+            .then(newUser => setCurrentUser(newUser))
+            .then(() => history.push(`/user/${currentUser.id}`))
+
+    }
+
+    // console.log(currentUser)
 
     return (
-        <Form> 
+        <Form>
             <TitleView>            
                 <FormTitle>Sign Up</FormTitle>
             </TitleView>
             <Input 
-                placeholder='Name...'
-                onChangeText={(val) => setName(val)}
-                value={name}
-                blurOnSubmit={false}
-                // autoFocus={true}
+                placeholder="First and Last Name"
+                onChangeText={text => setValue('name', text)} 
             /> 
-            <Input
-                placeholder='Email...'
-                onChangeText={(val) => setEmail(val)}
-                value={email}
-                // autoFocus={true}
+            <Input 
+                placeholder="Email"
+                onChangeText={text => setValue('email', text)}
             />
-            <Button>
+            <Input 
+                placeholder="Picture Url"
+                onChangeText={text => setValue('picture', text)}
+           />
+            <Button onPress={handleSubmit(onSubmit)}>
                 <Span>Create account</Span>
-            </Button>       
-        </Form>
+            </Button>
+        </Form>    
     )
 }
 
