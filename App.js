@@ -71,8 +71,8 @@ function App() {
             <Route exact path='/challenges/:id'>
               <ChallengeShow currentUser={currentUser}/>
             </Route> 
-            <Route exact path='/challenges/create'>
-              <CreateChallenge/>
+            <Route exact path='/create_challenge'>
+              <CreateChallenge currentUser={currentUser}/>
             </Route> 
           </Switch> 
         </Main>

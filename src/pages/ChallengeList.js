@@ -15,6 +15,7 @@ function ChallengeList ( {challenges} ) {
     const MainView = styled.View`
       flex-direction: row;
       flex-wrap: wrap
+      padding-bottom: 50px;
     `
 
     const allChallenges = challenges.map(c => {

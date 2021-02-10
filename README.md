@@ -12,3 +12,14 @@
 <!-- 4. Finalize post request for UTC -->
 
 1. Fix Problem with setting Current user after using useEffect -- Page keeps reloading 
+2. Filter by genre
+3. Make Edit Home Page to bring you to either login or sign Up
+
+Stretch 
+
+1. Add Chat feature
+2. Linear gradient
+3. Ability to see other people's pages 
+4. Page with Scroll Divs 
+5. Upload pictures
+6. Full Auth ????

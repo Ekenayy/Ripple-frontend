@@ -6,7 +6,8 @@ import { BASE_URL } from '@env'
 
 function TaskItem ( {userTaskChallenge} ) {
 
-   const [toggleCheckBox, setToggleCheckBox] = useState(userTaskChallenge.completed)
+    const [stateUTC, setStateUTC] = useState(userTaskChallenge)
+    const [toggleCheckBox, setToggleCheckBox] = useState(stateUTC.completed)
 
     const Details = styled.View`
         width: 100%;
@@ -32,7 +33,7 @@ function TaskItem ( {userTaskChallenge} ) {
             body: JSON.stringify(formBody)
         })
             .then(r => r.json())
-            .then(data => console.log(data))
+            .then(fetchedUTC =>setStateUTC(fetchedUTC))
     }
 
     return(

@@ -3,10 +3,10 @@ import styled from "styled-components";
 
 function Welcome () {
 
-const MainText = styled.Text`
-  font-size: 24px;
-  color: #F7F8F3;
-  margin-top: 10px;
+  const MainText = styled.Text`
+    font-size: 24px;
+    color: #F7F8F3;
+    margin-top: 10px;
   `
 
     return (

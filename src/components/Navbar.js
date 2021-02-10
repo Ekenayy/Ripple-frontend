@@ -29,6 +29,7 @@ function Navbar () {
         }
     })
 
+    // exact path='/challenges/create'
     return (
         <Nav> 
             <Link style={styles.navItem} to='/challenges'>
@@ -42,6 +43,9 @@ function Navbar () {
             </Link>
             <Link style={styles.navItem} to='/user/:id'>
                 <NavText>Profile</NavText>
+            </Link>
+            <Link style={styles.navItem} to='/create_challenge'>
+                <NavText>Create</NavText>
             </Link>
         </Nav>
     )

@@ -44,7 +44,7 @@ function ChallengeShow ( {currentUser }) {
     `
     const ChallengeImage = styled.Image`
       width:100%;
-      height:80px;
+      height:160px;
     `
 
     const Button = styled.TouchableOpacity`
@@ -61,9 +61,9 @@ function ChallengeShow ( {currentUser }) {
 
     // Return statement and functions are wrapped in a conditional 
   if (challenge) {
-    const url = challenge.video_url
-    const lastPart = url.split("=")
-    youtubeId = lastPart[1].split("&")[0]
+    // const url = challenge.video_url
+    // const lastPart = url.split("=")
+    // youtubeId = lastPart[1].split("&")[0]
 
     const allTasks = challenge.task_challenges.map(tc => {
       // debugger 
