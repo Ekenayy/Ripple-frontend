@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { Alert } from 'react-native'
 import {useForm} from 'react-hook-form'
@@ -8,8 +8,8 @@ import { useHistory } from "react-router-dom";
 
 function SignUp ( {currentUser, setCurrentUser }) {
 
-    // const [name, onChangeName] = useState("Name..")
-    // const [email, onChangeEmail] = useState("Email..")
+    const [loaded, setLoaded] = useState(false)
+
     let history = useHistory()
     
     const {register, handleSubmit, setValue} = useForm()
@@ -67,10 +67,18 @@ function SignUp ( {currentUser, setCurrentUser }) {
             body: JSON.stringify(formBody)
         })
             .then(r => r.json())
-            .then(newUser => setCurrentUser(newUser))
-            .then(() => history.push(`/user/${currentUser.id}`))
-
+            .then(newUser => {
+                setCurrentUser(newUser)
+                setLoaded(true)
+            })
     }
+
+
+    useEffect(() => {
+        if (currentUser) {
+            history.push(`/user/${currentUser.id}`)
+        }
+    }, [loaded])
 
     // console.log(currentUser)
 

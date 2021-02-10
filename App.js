@@ -17,19 +17,9 @@ import { BASE_URL } from '@env'
 
 function App() {
 
-  const [challenges, setChallenges] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/challenges`)
-      .then(r => r.json())
-      .then(data => setChallenges(data))
-      .catch(function(error) {
-        console.log('There has been a problem with your fetch operation: ' + error.message);
-          throw error;
-        });
-  }, [])
-
+  
   // useEffect(() => {
 
   //   if (currentUser) {
@@ -77,10 +67,10 @@ function App() {
               <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
             </Route>
             <Route exact path='/challenges'>
-              <ChallengeList challenges={challenges}/>
+              <ChallengeList />
             </Route> 
             <Route exact path='/challenges/:id'>
-              <ChallengeShow currentUser={currentUser}/>
+              <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
             </Route> 
             <Route exact path='/create_challenge'>
               <CreateChallenge currentUser={currentUser}/>

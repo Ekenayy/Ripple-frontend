@@ -13,6 +13,8 @@
 
 1. Fix Problem with setting Current user after using useEffect -- Page keeps reloading 
 2. Filter by genre
+3. When challenges are complete -- either miniize them or make them standout somehow
+4. 
 <!-- 3. Make Edit Home Page to bring you to either login or sign Up -->
 
 Stretch 

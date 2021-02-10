@@ -5,7 +5,7 @@ import YouTube from 'react-native-youtube'
 import { BASE_URL } from '@env'
 
 
-function ChallengeShow ( {currentUser }) {
+function ChallengeShow ( {currentUser, setCurrentUser}) {
 
   // AIzaSyDm0mYxB4CI2wZWva9b53HumoXnKvfeMMY
   let history = useHistory()
@@ -32,7 +32,7 @@ function ChallengeShow ( {currentUser }) {
 
     const MainText = styled.Text`
       font-size: 12px;
-      color: #F7F8F3;
+      color: #F7F8F3;   
       `
 
     const TestView = styled.View`
@@ -124,7 +124,7 @@ function ChallengeShow ( {currentUser }) {
   }
   
   // console.log(Button.inlineStyle.rules.display)
-
+  console.log(challenge.user.name)
         return (
         <>
           {/* <VideoView>
@@ -137,6 +137,9 @@ function ChallengeShow ( {currentUser }) {
           <ImageView>          
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
+          <TestView>
+            <MainText>Created by:  {challenge.user.name}</MainText>
+          </TestView>
           {allTasks}
           {/* Conditionally rendering based off of custom serializer attribute */}
           {currentUser.challenge_ids.includes(challenge.id) || clicked ? null : 

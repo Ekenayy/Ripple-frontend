@@ -25,7 +25,7 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
 
     const Image = styled.Image`
         width:100%;
-        height:64px;
+        height:160px;
     `
     const Details = styled.View`
         width: 100%;

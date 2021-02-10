@@ -31,10 +31,8 @@ function Welcome () {
       border-radius:20px;
   `
 
-  const SignUpButton = styled.TouchableOpacity`
+  const SignUpButton = styled(LoginButton)`
     background: #E379DF;
-    width: 100px;
-    border-radius:20px;
   `
   const Span = styled.Text`
     color: #F7F8F3
@@ -55,7 +53,7 @@ function Welcome () {
     return (
       <MainView>
         <TextView>
-          <MainText>There's no such thing as a small act of kindness. Every act creates a ripple with no logical end.</MainText>
+          <MainText>"There's no such thing as a small act of kindness. Every act creates a ripple with no logical end."</MainText>
           <SmallText> - Scott Adams</SmallText>
         </TextView>
         <OptionView>

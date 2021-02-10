@@ -10,10 +10,11 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [createdChall, setCreatedChall] = useState([])
     const [userChall, setUserChall] = useState([])
-    const [selected, setSeleted] = useState([])
+    const [selected, setSeleted] = useState("")
 
     let params = useParams()
     let formId
+    let userObj = {}
 
 // If this user has just signed up the params id will be a number,
 // If the user clicks the profile button on the nav, params will be NaN which is falsy
@@ -26,6 +27,8 @@ function Profile ( {currentUser, setCurrentUser}) {
     
 
       useEffect(() => {
+        const abortCtrl = new AbortController()
+        const opts = {signal: abortCtrl.signal}
 
         fetch(`${BASE_URL}/my_user_challenges`, {
                   method: "POST",
@@ -40,28 +43,99 @@ function Profile ( {currentUser, setCurrentUser}) {
                       console.log(data.errors)
                     } else {
                       setUserChall(data)
+                      // setIsLoaded(true)
                     }                   
                   })
+                  .catch((err) => {
+                          if (err.name == 'AbortError') {
+                            console.log('request was cancelled')
+                          } else {
+                            console.log(err)
+                          }
+                  })
+
+                  return function cleanup() {
+                    abortCtrl.abort()
+                  }
       }, [])
 
       useEffect(() => {
-        let mounted = true
+        const abortCtrl = new AbortController()
+        const opts = {signal: abortCtrl.signal}
+
+        fetch(`${BASE_URL}/created_challenges`, {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            user_id: formId
+          })
+        })
+          .then(res => res.json())
+          .then(fetchedCreatedChallenge => {
+            // console.log(fetchedCreatedChallenge)
+            setCreatedChall(fetchedCreatedChallenge)
+            setIsLoaded(true)
+          })
+          .catch((err) => {
+            if (err.name == 'AbortError') {
+              console.log('request was cancelled')
+            } else {
+              console.log(err)
+            }
+        })
+
+        return function cleanup() {
+          abortCtrl.abort()
+        }
+
+      }, [])
+
+      // console.log(createdChall)
+
+      // useEffect(() => {
+      //   const abortCtrl = new AbortController()
+      //   const opts = {signal: abortCtrl.signal}
+
+      //   fetch(`${BASE_URL}/users/${formId}`)
+      //     .then(r => r.json())
+      //     .then(thisUser => {
+      //         setIsLoaded(true)
+      //         setCurrentUser(thisUser)
+      //       }
+      //     )
+      //     .catch((err) => {
+      //       if (err.name == 'AbortError') {
+      //         console.log('request was cancelled')
+      //       } else {
+      //         console.log(err)
+      //       }
+      //     })
+          
+      //         return function cleanup() {
+      //           abortCtrl.abort()      
+      //         }
+      // }, [formId])
+
+      // useEffect(() => {
+      //   let mounted = true
         
-        console.log(mounted)
-          if (mounted) {
-            fetch(`${BASE_URL}/users/${formId}`)
-              .then(r => r.json())
-              .then(thisUser => {
-                if (mounted) {
-                  setIsLoaded(true)
-                  console.log(thisUser)
-                }
-              })
-          }
-              return function cleanup() {
-                mounted = false        
-              }
-      }, [formId])
+      //   console.log(mounted)
+      //     if (mounted) {
+      //       fetch(`${BASE_URL}/users/${formId}`)
+      //         .then(r => r.json())
+      //         .then(thisUser => {
+      //           if (mounted) {
+      //             setIsLoaded(true)
+      //             userObj = thisUser
+      //           }
+      //         })
+      //     }
+      //         return function cleanup() {
+      //           mounted = false        
+      //         }
+      // }, [formId])
+
+      
 
 
       const Container = styled.View`
@@ -76,7 +150,8 @@ function Profile ( {currentUser, setCurrentUser}) {
 
       const Avatar = styled.View`
         width: 50%;
-        margin-right: 12px;
+        margin-right: 12px;        
+        padding-left: 12px;
       `
 
       const Bio = styled.View`
@@ -127,6 +202,10 @@ function Profile ( {currentUser, setCurrentUser}) {
       
       if (isLoaded) {
 
+        const handleCreatedClick = () => {
+
+        }
+
         const userChallengeList = userChall.map(uc => {
           return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
         })
@@ -145,7 +224,7 @@ function Profile ( {currentUser, setCurrentUser}) {
             </UserInfo>
             <Challenges>
               <Filters>
-                <Button>
+                <Button onPress={(e) => console.log(e.target)}>
                   <Span>Created Challenges</Span>
                 </Button>
                 <Button>

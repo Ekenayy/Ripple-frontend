@@ -7,7 +7,7 @@ function ChallengeItem ( {challenge} ) {
 
     let history = useHistory()
 
-    const {name, description, id, photo_url, video_url, user } = challenge
+    const {name, description, id, photo_url, video_url, user, genre } = challenge
 
     const ItemView = styled.View`
         padding: 12px;
@@ -31,6 +31,11 @@ function ChallengeItem ( {challenge} ) {
         font-weight:500;
         color: #F7F8F3;
     `
+    const Span = styled.Text`
+      color: #F7F8F3
+    `
+
+    console.log(genre)
     return (
 
         <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}>
@@ -40,6 +45,7 @@ function ChallengeItem ( {challenge} ) {
                 </Avatar>   
                 <Details>
                     <Name>{name}</Name>
+                    <Span>Genre: {genre}</Span>
                 </Details>
             </ItemView>                
         </TouchableOpacity>
