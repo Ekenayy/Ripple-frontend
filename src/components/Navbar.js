@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import { StyleSheet } from "react-native"
 
-function Navbar () {
+function Navbar ( {currentUser} ) {
     const NavText = styled.Text`
     font-size: 12px;
     color: #F7F8F3;
@@ -29,24 +29,38 @@ function Navbar () {
         }
     })
 
-    // exact path='/challenges/create'
+    const BeforeUser = () => {
+        return (
+            <>
+                <Link style={styles.navItem} to='/login'>
+                    <NavText>Login</NavText>
+                </Link>
+                <Link style={styles.navItem} to='/signup'>
+                    <NavText>SignUp</NavText>
+                </Link>
+            </>
+        ) 
+    }
+
+    const AfterUser = () => {
+        return (
+            <>
+                <Link style={styles.navItem} to='/challenges'>
+                    <NavText>Challenges</NavText>
+                </Link>
+                <Link style={styles.navItem} to='/user/:id'>
+                    <NavText>Profile</NavText>
+                </Link>
+                <Link style={styles.navItem} to='/create_challenge'>
+                    <NavText>Create</NavText>
+                </Link>
+            </>
+        )
+    }
+
     return (
-        <Nav> 
-            <Link style={styles.navItem} to='/challenges'>
-                <NavText>Challenges</NavText>
-            </Link>
-            <Link style={styles.navItem} to='/login'>
-                <NavText>Login</NavText>
-            </Link>
-            <Link style={styles.navItem} to='/signup'>
-                <NavText>SignUp</NavText>
-            </Link>
-            <Link style={styles.navItem} to='/user/:id'>
-                <NavText>Profile</NavText>
-            </Link>
-            <Link style={styles.navItem} to='/create_challenge'>
-                <NavText>Create</NavText>
-            </Link>
+        <Nav>
+            {currentUser ? <AfterUser/> : <BeforeUser/>}
         </Nav>
     )
 }

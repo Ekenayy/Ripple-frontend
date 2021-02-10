@@ -31,11 +31,11 @@ function App() {
   }, [])
 
   
-  useEffect(() => {
-    fetch(`${BASE_URL}/fake`)
-      .then(r => r.json())
-      .then(user => setCurrentUser(user))
-  }, [])
+  // useEffect(() => {
+  //   fetch(`${BASE_URL}/fake`)
+  //     .then(r => r.json())
+  //     .then(user => setCurrentUser(user))
+  // }, [])
 
   const Body = styled.View`
     background-color: #5D5FEF;
@@ -76,7 +76,7 @@ function App() {
             </Route> 
           </Switch> 
         </Main>
-        <Navbar/>
+        <Navbar currentUser={currentUser}/>
       </Body>
     </NativeRouter>
   );

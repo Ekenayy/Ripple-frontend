@@ -24,14 +24,8 @@ function Profile ( {currentUser, setCurrentUser}) {
       formId = currentUser.id
     }
     
-      useEffect(() => {
-            fetch(`${BASE_URL}/users/${formId}`)
-              .then(r => r.json())
-              .then(thisUser => console.log(thisUser))
-          }, [])
 
       useEffect(() => {
-        console.log(formId)
 
         fetch(`${BASE_URL}/my_user_challenges`, {
                   method: "POST",
@@ -46,22 +40,43 @@ function Profile ( {currentUser, setCurrentUser}) {
                       console.log(data.errors)
                     } else {
                       setUserChall(data)
-                      setIsLoaded(true)
                     }                   
                   })
       }, [])
+
+      useEffect(() => {
+        let mounted = true
         
+        console.log(mounted)
+          if (mounted) {
+            fetch(`${BASE_URL}/users/${formId}`)
+              .then(r => r.json())
+              .then(thisUser => {
+                if (mounted) {
+                  setIsLoaded(true)
+                  console.log(thisUser)
+                }
+              })
+          }
+              return function cleanup() {
+                mounted = false        
+                console.log(mounted)
+              }
+      }, [])
+
       const Container = styled.View`
         flex-direction: column;
+        padding-bottom: 50px;
       `
 
       const UserInfo = styled.View`
         flex-direction: row;
-        margin-bottom: 40px;
+        margin-bottom: 15px;
       `
 
       const Avatar = styled.View`
         width: 50%;
+        margin-right: 12px;
       `
 
       const Bio = styled.View`
@@ -69,6 +84,8 @@ function Profile ( {currentUser, setCurrentUser}) {
       `
 
       const AvatarImage = styled.Image`
+        width: 100%;
+        height: 160px;
       `
 
 
@@ -108,14 +125,12 @@ function Profile ( {currentUser, setCurrentUser}) {
       `
 
       
-      if (userChall) {
+      if (isLoaded) {
 
         const userChallengeList = userChall.map(uc => {
           return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
         })
 
-        // console.log(parseInt(params))
-        // console.log(currentUser.id)
 
         return (
           <Container>
