@@ -52,7 +52,6 @@ function Welcome () {
     padding-top: 60px;
   `
 
-
     return (
       <MainView>
         <TextView>

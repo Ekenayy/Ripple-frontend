@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
 import { BASE_URL, HEADERS } from '@env'
@@ -9,6 +9,7 @@ function Login ( {setCurrentUser, currentUser} ) {
     let history = useHistory()
     
     const {register, handleSubmit, setValue} = useForm()
+    const [loaded, setLoaded] = useState(false)
 
     const H1 = styled.Text`
     font-size: 24px;
@@ -67,12 +68,19 @@ function Login ( {setCurrentUser, currentUser} ) {
             body: JSON.stringify(formBody)
         })
             .then(r => r.json())
-            .then(newUser => setCurrentUser(newUser))
-            .then(() => history.push(`/user/${currentUser.id}`))
+            .then(newUser => {
+                setCurrentUser(newUser) 
+                setLoaded(true)
+            })
+
 
     }
 
-    // console.log(currentUser)
+    useEffect(() => {
+            if (currentUser) {
+                history.push(`/user/${currentUser.id}`)
+            }
+    }, [loaded])
 
     return (
         <Form>

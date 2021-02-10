@@ -18,8 +18,8 @@ function Profile ( {currentUser, setCurrentUser}) {
 // If this user has just signed up the params id will be a number,
 // If the user clicks the profile button on the nav, params will be NaN which is falsy
     
-    if (parseInt(params)) {
-      formId = parseInt(params)
+    if (parseInt(params.id)) {
+      formId = parseInt(params.id)
     } else {
       formId = currentUser.id
     }
@@ -60,9 +60,9 @@ function Profile ( {currentUser, setCurrentUser}) {
           }
               return function cleanup() {
                 mounted = false        
-                console.log(mounted)
               }
-      }, [])
+      }, [formId])
+
 
       const Container = styled.View`
         flex-direction: column;

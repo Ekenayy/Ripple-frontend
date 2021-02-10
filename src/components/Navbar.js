@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import { StyleSheet } from "react-native"
 
-function Navbar ( {currentUser} ) {
+function Navbar ( {currentUser, setCurrentUser} ) {
     const NavText = styled.Text`
     font-size: 12px;
     color: #F7F8F3;
@@ -29,6 +29,11 @@ function Navbar ( {currentUser} ) {
         }
     })
 
+    const handleSignOut = () => {
+        setCurrentUser(null)
+
+    }
+
     const BeforeUser = () => {
         return (
             <>
@@ -45,14 +50,17 @@ function Navbar ( {currentUser} ) {
     const AfterUser = () => {
         return (
             <>
-                <Link style={styles.navItem} to='/challenges'>
-                    <NavText>Challenges</NavText>
-                </Link>
                 <Link style={styles.navItem} to='/user/:id'>
                     <NavText>Profile</NavText>
                 </Link>
+                <Link style={styles.navItem} to='/challenges'>
+                    <NavText>Challenges</NavText>
+                </Link>
                 <Link style={styles.navItem} to='/create_challenge'>
                     <NavText>Create</NavText>
+                </Link>
+                <Link style={styles.navItem} to='/' onPress={handleSignOut}>
+                    <NavText>Logout</NavText>
                 </Link>
             </>
         )

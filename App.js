@@ -18,7 +18,7 @@ import { BASE_URL } from '@env'
 function App() {
 
   const [challenges, setChallenges] = useState([])
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState(null)
 
   useEffect(() => {
     fetch(`${BASE_URL}/challenges`)
@@ -29,6 +29,16 @@ function App() {
           throw error;
         });
   }, [])
+
+  // useEffect(() => {
+
+  //   if (currentUser) {
+  //       fetch(`${BASE_URL}/users/${currentUser.id}`)
+  //         .then(r => r.json())
+  //         .then(thisUser => setCurrentUser(thisUser))
+  //     }
+
+  // }, [])
 
   
   // useEffect(() => {
@@ -45,7 +55,8 @@ function App() {
   const Main = styled.ScrollView`
   `
 
-  
+  // console.log(currentUser)
+
   
   return (
     <NativeRouter> 
@@ -76,7 +87,7 @@ function App() {
             </Route> 
           </Switch> 
         </Main>
-        <Navbar currentUser={currentUser}/>
+        <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
       </Body>
     </NativeRouter>
   );

@@ -14,6 +14,7 @@ function ChallengeShow ( {currentUser }) {
   const [challenge, setChallenge] = useState()
   const [isLoaded, setIsLoaded] = useState(false)
   const [userChallenge, setUserChallenge] = useState()
+  const [clicked, setClicked] = useState(false)
 
   let youtubeId
 
@@ -83,6 +84,7 @@ function ChallengeShow ( {currentUser }) {
       completed: false
   }
 
+
     fetch(`${BASE_URL}/user_challenges`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -93,6 +95,9 @@ function ChallengeShow ( {currentUser }) {
         setUserChallenge(fetchedUserChallenge)
         createUTC(fetchedUserChallenge)
       })
+
+      // console.log(Button.inlineStyle.rules.push(`display: none`))
+      setClicked(true)
   }
 
   const createUTC = (ucFromDb) => {
@@ -117,8 +122,9 @@ function ChallengeShow ( {currentUser }) {
     })
 
   }
-
   
+  // console.log(Button.inlineStyle.rules.display)
+
         return (
         <>
           {/* <VideoView>
@@ -133,7 +139,7 @@ function ChallengeShow ( {currentUser }) {
           </ImageView>
           {allTasks}
           {/* Conditionally rendering based off of custom serializer attribute */}
-          {currentUser.challenge_ids.includes(challenge.id) ? null : 
+          {currentUser.challenge_ids.includes(challenge.id) || clicked ? null : 
           <Button onPress={handlePress}>
             <Span>Take this challenge</Span>
           </Button>}
