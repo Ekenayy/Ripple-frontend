@@ -8,6 +8,7 @@ function ChallengeList () {
 
   const [challenges, setChallenges] = useState([])
   const [isLoaded, setLoaded] = useState(false)
+  const [searched, setSearched] = useState("")
 
   useEffect(() => {
     let mounted = true
@@ -50,6 +51,14 @@ function ChallengeList () {
       padding-bottom: 50px;
     `
 
+    // Also need to pass the ScrollView a prop of horizontal={true}
+    // const MainView = styled.ScrollView`
+    //   flex-direction: row;
+    //   flex-wrap: wrap
+    //   padding-bottom: 50px;
+    // `
+
+
   if (isLoaded) {
     const allChallenges = challenges.map(c => {
       return <ChallengeItem key={c.id} challenge={c} />
@@ -57,8 +66,8 @@ function ChallengeList () {
     
         return (
           <>
-          <Search/>
-          <MainView> 
+          <Search searched={searched} setSearched={setSearched}/>
+          <MainView > 
             {allChallenges}
           </MainView>
           </>

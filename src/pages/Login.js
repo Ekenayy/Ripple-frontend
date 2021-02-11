@@ -10,6 +10,7 @@ function Login ( {setCurrentUser, currentUser} ) {
     
     const {register, handleSubmit, setValue} = useForm()
     const [loaded, setLoaded] = useState(false)
+    const [errors, setErrors] = useState("")
 
     const H1 = styled.Text`
     font-size: 24px;
@@ -55,6 +56,10 @@ function Login ( {setCurrentUser, currentUser} ) {
         padding: 12px;
         align-self: center
     `
+
+    const ErrorSpan = styled(Span)`
+        color: red
+    `
     const onSubmit = data => {
 
         let formBody = {
@@ -69,8 +74,12 @@ function Login ( {setCurrentUser, currentUser} ) {
         })
             .then(r => r.json())
             .then(newUser => {
-                setCurrentUser(newUser) 
-                setLoaded(true)
+                if (newUser.errors) {
+                    setErrors(newUser.errors)
+                } else {
+                    setCurrentUser(newUser) 
+                    setLoaded(true)
+                }
             })
 
 
@@ -91,6 +100,7 @@ function Login ( {setCurrentUser, currentUser} ) {
                 placeholder="Email"
                 onChangeText={text => setValue('email', text)}
             />
+            {errors ? <ErrorSpan>{errors}</ErrorSpan> : null}
             <Button onPress={handleSubmit(onSubmit)}>
                 <Span>Log in</Span>
             </Button>

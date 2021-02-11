@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { BASE_URL } from '@env'
 import UserChallengeItem from '../components/UserChallengeItem'
 import {useParams, useHistory } from "react-router-dom";
+import ChallengeItem from '../components/ChallengeItem'
 
 
 function Profile ( {currentUser, setCurrentUser}) {
@@ -10,7 +11,7 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [isLoaded, setIsLoaded] = useState(false)
     const [createdChall, setCreatedChall] = useState([])
     const [userChall, setUserChall] = useState([])
-    const [selected, setSeleted] = useState("")
+    const [selected, setSelected] = useState("")
 
     let params = useParams()
     let formId
@@ -203,13 +204,26 @@ function Profile ( {currentUser, setCurrentUser}) {
       if (isLoaded) {
 
         const handleCreatedClick = () => {
-
+          setSelected('created')
         }
 
-        const userChallengeList = userChall.map(uc => {
-          return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
-        })
+        const createdChallengeList = createdChall.map(chall => {
+            return <ChallengeItem key={chall.id} challenge={chall}/>
+          })
+        
 
+        // I can handle this with a filter and ternary expression. 
+        // Completed and uncompeted challenges are still just UserChallenges
+        const userChallengeList = userChall.filter( uc => {
+          if (selected == 'finished') {
+            return uc.completed
+          } else {
+            return !uc.completed
+          }
+        })
+          .map(uc => {
+              return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
+          })
 
         return (
           <Container>
@@ -224,16 +238,24 @@ function Profile ( {currentUser, setCurrentUser}) {
             </UserInfo>
             <Challenges>
               <Filters>
-                <Button onPress={(e) => console.log(e.target)}>
+                <Button onPress={() => setSelected('created')}>
                   <Span>Created Challenges</Span>
                 </Button>
-                <Button>
-                  <Span>Taken Challenges</Span>
+                <Button onPress={() => setSelected('current')}>
+                  <Span>Current Challenges</Span>
+                </Button>
+                <Button onPress={() => setSelected('finished')}>
+                  <Span>Finished Challenges</Span>
                 </Button>
               </Filters>
+              {selected === 'created' ? 
+              <ChallengeView>
+                {createdChallengeList}
+              </ChallengeView> :
               <ChallengeView> 
-                {userChallengeList} 
+                {userChallengeList}
               </ChallengeView>
+              }
             </Challenges>
         </Container>
         )

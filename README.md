@@ -10,11 +10,13 @@
 <!-- 2. Fetch data with these -->
 <!-- 3. Test out endpoints and use .env global var -->
 <!-- 4. Finalize post request for UTC -->
-
-1. Fix Problem with setting Current user after using useEffect -- Page keeps reloading 
+<!-- 
+1. Fix Problem with setting Current user after using useEffect -- Page keeps reloading  -- Not really a problem anymore because Profile only fetches userChallenges and challenges related to that user  -->
 2. Filter by genre
 3. When challenges are complete -- either miniize them or make them standout somehow
-4. 
+4. Add Ids from Id library for taskChallenges
+5. Genre drop-downs for creating a challenge
+<!-- 5. Filter by completed challenges, etc on profile page  -->
 <!-- 3. Make Edit Home Page to bring you to either login or sign Up -->
 
 Stretch 

@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 function SignUp ( {currentUser, setCurrentUser }) {
 
     const [loaded, setLoaded] = useState(false)
+    const [errors, setErrors] = useState("")
 
     let history = useHistory()
     
@@ -53,6 +54,11 @@ function SignUp ( {currentUser, setCurrentUser }) {
     color: #F7F8F3
     padding: 12px;
     `
+
+    const ErrorSpan = styled(Span)`
+        color: red
+    `
+
     const onSubmit = data => {
         let formBody = {
             name: data.name,
@@ -68,8 +74,13 @@ function SignUp ( {currentUser, setCurrentUser }) {
         })
             .then(r => r.json())
             .then(newUser => {
-                setCurrentUser(newUser)
-                setLoaded(true)
+                if (newUser.errors) {
+                    console.log(newUser.errors)
+                    setErrors(newUser.errors)
+                } else {
+                    setCurrentUser(newUser)
+                    setLoaded(true)
+                }
             })
     }
 
@@ -77,10 +88,14 @@ function SignUp ( {currentUser, setCurrentUser }) {
     useEffect(() => {
         if (currentUser) {
             history.push(`/user/${currentUser.id}`)
+        } else {
+            console.log('did not work')
         }
     }, [loaded])
 
-    // console.log(currentUser)
+    console.log(errors)
+
+    
 
     return (
         <Form>
@@ -98,7 +113,9 @@ function SignUp ( {currentUser, setCurrentUser }) {
             <Input 
                 placeholder="Picture Url"
                 onChangeText={text => setValue('picture', text)}
-           />
+            />
+            {/* {errors ? <ErrorSpan>{errors}</ErrorSpan> : null} */}
+            {errors ? errors.map( (error) => <ErrorSpan key={error}>*{error}</ErrorSpan>) : null}
             <Button onPress={handleSubmit(onSubmit)}>
                 <Span>Create account</Span>
             </Button>
