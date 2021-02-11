@@ -16,6 +16,7 @@
 3. When challenges are complete -- either miniize them or make them standout somehow
 4. Add Ids from Id library for taskChallenges
 5. Genre drop-downs for creating a challenge
+6. There's a bug where you can take a challenge, mark that challenge as complete and then are still able to take that challenge again without a page reload 
 <!-- 5. Filter by completed challenges, etc on profile page  -->
 <!-- 3. Make Edit Home Page to bring you to either login or sign Up -->
 
