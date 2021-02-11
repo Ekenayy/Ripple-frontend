@@ -31,13 +31,7 @@ function Profile ( {currentUser, setCurrentUser}) {
         const abortCtrl = new AbortController()
         const opts = {signal: abortCtrl.signal}
 
-        fetch(`${BASE_URL}/my_user_challenges`, {
-                  method: "POST",
-                  headers: {'Content-Type': 'application/json'},
-                  body: JSON.stringify({
-                    user_id: formId
-                  })
-                })
+        fetch(`${BASE_URL}/my_user_challenges/${formId}`, opts)
                   .then(res => res.json())
                   .then(data => {
                     if (data.errors) {
@@ -64,13 +58,7 @@ function Profile ( {currentUser, setCurrentUser}) {
         const abortCtrl = new AbortController()
         const opts = {signal: abortCtrl.signal}
 
-        fetch(`${BASE_URL}/created_challenges`, {
-          method: "POST",
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            user_id: formId
-          })
-        })
+        fetch(`${BASE_URL}/created_challenges/${formId}`, opts)
           .then(res => res.json())
           .then(fetchedCreatedChallenge => {
             // console.log(fetchedCreatedChallenge)

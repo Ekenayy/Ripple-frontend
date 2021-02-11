@@ -19,7 +19,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   let youtubeId
 
   useEffect(() => {
-    fetch(`${BASE_URL}/challenges/${params.id}`)
+    const abortCtrl = new AbortController();
+    const opts = { signal: abortCtrl.signal };
+
+    fetch(`${BASE_URL}/challenges/${params.id}`, opts)
           .then(res => res.json())
           .then(data => setChallenge(data))
           .then(() => {
@@ -27,6 +30,13 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             setIsLoaded(true)
           }
           })
+          .catch((error) => {
+            if (error.name == 'AbortError') {
+              console.log('request was cancelled');
+            }})
+          
+
+    return () => abortCtrl.abort()
   }, [])
   
 
@@ -69,7 +79,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const allTasks = challenge.task_challenges.map(tc => {
       // debugger 
       return (
-      <TestView >      
+      <TestView key={tc.id}>      
         <MainText>{tc.task.description}</MainText>
       </TestView>
       )
@@ -94,6 +104,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       .then(fetchedUserChallenge => {
         setUserChallenge(fetchedUserChallenge)
         createUTC(fetchedUserChallenge)
+        setCurrentUser(fetchedUserChallenge.user)
       })
 
       // console.log(Button.inlineStyle.rules.push(`display: none`))

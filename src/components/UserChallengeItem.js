@@ -13,11 +13,13 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
 
     const {name, description, id, photo_url, video_url, user } = challenge
     const [completed, setCompleted] = useState(userChallenge.completed)
+    const [deleted, setDeleted] = useState(false)
 
     const ItemView = styled.View`
         padding: 12px;
         border-radius: 20px;
         width: 100%;
+        display: ${props => props.deleted ? 'none' : 'flex'}
     `
     const Avatar = styled.View`
         width:100%
@@ -46,11 +48,20 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
     `
     
     const Button = styled.TouchableOpacity`
-      background: #03DAC5;
-      width: 150px;
-      border-radius:20px;
-      align_self: center;
-      margin-top: 5px;
+        background: #03DAC5;
+        width: 150px;
+        border-radius:20px;
+        align_self: center;
+        margin-top: 5px;
+    `
+
+    const DeleteButton = styled(Button)`
+        background: #E379DF
+    `
+
+    const ButtonView = styled.View`
+        flex-direction: row;
+        justifyContent: space-around;
     `
 
     const Span = styled.Text`
@@ -80,10 +91,21 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
             .then(r => r.json())
             .then(data => console.log(data))
     }
+
+    const handleDelete = () => {
+
+        fetch(`${BASE_URL}/user_challenges/${userChallenge.id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}
+        })
+            .then(r => r.json())
+            .then(data => setDeleted(true))
+
+    }
     
     return (
 
-            <ItemView > 
+            <ItemView deleted={deleted}> 
                 <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}> 
                 <Avatar>
                     <Image source={{uri: photo_url}}/>
@@ -92,14 +114,19 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
                     <Title>{name}</Title>
                 </Details>             
                 </TouchableOpacity>                   
-                {allTasks}     
+                {allTasks}
+                <ButtonView>
                 {!completed ? 
-                <Button onPress={handlePress}>
-                    <Span>Mark Complete</Span>
-                </Button> : 
-                <Button >
-                    <Span>Completed!!!</Span>
-                </Button> }    
+                    <Button onPress={handlePress}>
+                        <Span>Mark Complete</Span>
+                    </Button> : 
+                    <Button >
+                        <Span>Completed!!!</Span>
+                    </Button> }  
+                    <DeleteButton onPress={handleDelete}>
+                        <Span>Delete</Span>
+                    </DeleteButton>  
+                </ButtonView>     
             </ItemView>
       
 

@@ -60,7 +60,14 @@ function ChallengeList () {
 
 
   if (isLoaded) {
-    const allChallenges = challenges.map(c => {
+    const allChallenges = challenges.filter(c => {
+      if (searched) {
+        return c.genre.toLowerCase().includes(searched.toLowerCase())
+      } else {
+        return c
+      }
+    })
+    .map(c => {
       return <ChallengeItem key={c.id} challenge={c} />
     })
     

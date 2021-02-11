@@ -19,7 +19,7 @@ function ChallengeItem ( {challenge} ) {
     `
 
     const Image = styled.Image`
-        width:150px;
+        width:165px;
         height:64px;
     `
     const Details = styled.View`
@@ -32,10 +32,9 @@ function ChallengeItem ( {challenge} ) {
         color: #F7F8F3;
     `
     const Span = styled.Text`
-      color: #F7F8F3
+        color: #F7F8F3
     `
 
-    console.log(genre)
     return (
 
         <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}>
