@@ -59,6 +59,9 @@ function Navbar ( {currentUser, setCurrentUser} ) {
                 <Link style={styles.navItem} to='/create_challenge'>
                     <NavText>Create</NavText>
                 </Link>
+                <Link style={styles.navItem} to='/chat'>
+                    <NavText>Chat</NavText>
+                </Link>
                 <Link style={styles.navItem} to='/' onPress={handleSignOut}>
                     <NavText>Logout</NavText>
                 </Link>

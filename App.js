@@ -13,29 +13,13 @@ import Profile from './src/pages/Profile'
 import SignUp from './src/pages/SignUp'
 import ChallengeShow from './src/pages/ChallengeShow'
 import CreateChallenge from './src/pages/CreateChallenge'
+// import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { BASE_URL } from '@env'
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
 
-  
-  // useEffect(() => {
-
-  //   if (currentUser) {
-  //       fetch(`${BASE_URL}/users/${currentUser.id}`)
-  //         .then(r => r.json())
-  //         .then(thisUser => setCurrentUser(thisUser))
-  //     }
-
-  // }, [])
-
-  
-  // useEffect(() => {
-  //   fetch(`${BASE_URL}/fake`)
-  //     .then(r => r.json())
-  //     .then(user => setCurrentUser(user))
-  // }, [])
 
   const Body = styled.View`
     background-color: #5D5FEF;
@@ -49,37 +33,38 @@ function App() {
 
   
   return (
-    <NativeRouter> 
-      <Body> 
-        <Header/>
-        <Main>
-          <Switch>
-            <Route exact path='/'>
-              <Welcome/>
-            </Route>
-            <Route exact path='/user/:id'>
-              <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-            </Route>
-            <Route exact path='/login'>
-              <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-            </Route>
-            <Route exact path='/signup'>
-              <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-            </Route>
-            <Route exact path='/challenges'>
-              <ChallengeList />
-            </Route> 
-            <Route exact path='/challenges/:id'>
-              <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-            </Route> 
-            <Route exact path='/create_challenge'>
-              <CreateChallenge currentUser={currentUser}/>
-            </Route> 
-          </Switch> 
-        </Main>
-        <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-      </Body>
-    </NativeRouter>
+
+      <NativeRouter> 
+        <Body> 
+          <Header/>
+          <Main>
+            <Switch>
+              <Route exact path='/'>
+                <Welcome/>
+              </Route>
+              <Route exact path='/user/:id'>
+                <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+              </Route>
+              <Route exact path='/login'>
+                <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+              </Route>
+              <Route exact path='/signup'>
+                <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+              </Route>
+              <Route exact path='/challenges'>
+                <ChallengeList />
+              </Route> 
+              <Route exact path='/challenges/:id'>
+                <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+              </Route> 
+              <Route exact path='/create_challenge'>
+                <CreateChallenge currentUser={currentUser}/>
+              </Route> 
+            </Switch> 
+          </Main>
+          <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+        </Body>
+      </NativeRouter>
   );
 }
 export default App

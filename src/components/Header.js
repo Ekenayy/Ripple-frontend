@@ -4,6 +4,7 @@ import styled from "styled-components";
 import logo from "../Ripple-logo.png"
 
 function Header () {
+    
     const HeaderText = styled.Text`
         font-size: 24px;
         color: #F7F8F3;

@@ -1,8 +1,9 @@
 import React, {useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useParams, useHistory } from "react-router-dom";
+import {useParams, useHistory } from "react-router-dom";
 import YouTube from 'react-native-youtube'
 import { BASE_URL } from '@env'
+import { Link } from "react-router-native";
 
 
 function ChallengeShow ( {currentUser, setCurrentUser}) {
@@ -70,6 +71,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       padding: 12px;
     `
 
+    const TextOpacity = styled.TouchableOpacity`
+    `
+
+    // console.log(challenge.user.id)
     // Return statement and functions are wrapped in a conditional 
   if (challenge) {
     // const url = challenge.video_url
@@ -133,7 +138,8 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     })
 
   }
-  
+  // <Link style={styles.navItem} to='/user/:id'>
+
   // console.log(Button.inlineStyle.rules.display)
   console.log(challenge.user.name)
         return (
@@ -149,8 +155,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
           <TestView>
-            <MainText>Created by:  {challenge.user.name}</MainText>
-          </TestView>
+            <TextOpacity onPress={() => history.push(`/user/${challenge.user.id}`)}> 
+              <MainText>Created by:  {challenge.user.name}</MainText>          
+            </TextOpacity>
+          </TestView>            
           {allTasks}
           {/* Conditionally rendering based off of custom serializer attribute */}
           {currentUser.challenge_ids.includes(challenge.id) || clicked ? null : 

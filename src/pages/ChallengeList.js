@@ -71,6 +71,17 @@ function ChallengeList () {
       return <ChallengeItem key={c.id} challenge={c} />
     })
     
+    // allChallenges.forEach(c => {
+    //     c.genre
+    //   return <ChallengeItem>
+    //   }) 
+
+    // Using state variable genres
+
+    // const challengesMappedToGenres = genres.forEach(g => {
+    //   if ()
+    // })
+
         return (
           <>
           <Search searched={searched} setSearched={setSearched}/>

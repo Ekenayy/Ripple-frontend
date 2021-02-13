@@ -12,11 +12,13 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [createdChall, setCreatedChall] = useState([])
     const [userChall, setUserChall] = useState([])
     const [selected, setSelected] = useState("")
+    const [thisUser, setThisUser] = useState(null)
 
     let params = useParams()
     let formId
     let userObj = {}
 
+    // console.log(currentUser)
 // If this user has just signed up the params id will be a number,
 // If the user clicks the profile button on the nav, params will be NaN which is falsy
     
@@ -26,6 +28,26 @@ function Profile ( {currentUser, setCurrentUser}) {
       formId = currentUser.id
     }
     
+    useEffect( () => {
+      const abortCtrl = new AbortController()
+      const opts = {signal: abortCtrl.signal}
+
+      fetch(`${BASE_URL}/users/${formId}}`, opts)
+        .then(res => res.json())
+        .then(fetchedUser => setThisUser(fetchedUser))
+        .catch((err) => {
+          if (err.name == 'AbortError') {
+            console.log('request was cancelled')
+          } else {
+            console.log(err)
+          }
+        })
+
+        return function cleanup() {
+          abortCtrl.abort()
+        }
+
+    }, [])
 
       useEffect(() => {
         const abortCtrl = new AbortController()
@@ -33,12 +55,11 @@ function Profile ( {currentUser, setCurrentUser}) {
 
         fetch(`${BASE_URL}/my_user_challenges/${formId}`, opts)
                   .then(res => res.json())
-                  .then(data => {
-                    if (data.errors) {
-                      console.log(data.errors)
+                  .then(fetchedUserChall => {
+                    if (fetchedUserChall.errors) {
+                      console.log(fetchedUserChall.errors)
                     } else {
-                      setUserChall(data)
-                      // setIsLoaded(true)
+                      setUserChall(fetchedUserChall)
                     }                   
                   })
                   .catch((err) => {
@@ -188,6 +209,15 @@ function Profile ( {currentUser, setCurrentUser}) {
       const ChallengeView = styled.View`
       `
 
+      const Title = styled.Text`
+        font-size: 18px;
+        font-weight:500;
+        color: #F7F8F3;
+        font-weight: bold;
+        align-self:center;
+    `
+
+      // console.log(thisUser)
       
       if (isLoaded) {
 
@@ -217,11 +247,11 @@ function Profile ( {currentUser, setCurrentUser}) {
           <Container>
             <UserInfo>
                 <Avatar>
-                    <AvatarImage source={{uri: currentUser.picture}}/>
+                    <AvatarImage source={{uri: thisUser.picture}}/>
                 </Avatar>
                 <Bio>
-                  <BioText>{currentUser.name}</BioText>
-                  <BioText>{currentUser.bio}</BioText>
+                  <BioText>{thisUser.name}</BioText>
+                  <BioText>{thisUser.bio}</BioText>
                 </Bio>
             </UserInfo>
             <Challenges>
@@ -238,9 +268,11 @@ function Profile ( {currentUser, setCurrentUser}) {
               </Filters>
               {selected === 'created' ? 
               <ChallengeView>
+                <Title>Created Challenges</Title>
                 {createdChallengeList}
               </ChallengeView> :
-              <ChallengeView> 
+              <ChallengeView>
+                <Title>Taken Challenges</Title> 
                 {userChallengeList}
               </ChallengeView>
               }
