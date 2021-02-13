@@ -2,8 +2,12 @@ import React from 'react';
 import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import { StyleSheet } from "react-native"
+import { useHistory } from "react-router-dom";
+
 
 function Navbar ( {currentUser, setCurrentUser} ) {
+    let history = useHistory()
+
     const NavText = styled.Text`
     font-size: 12px;
     color: #F7F8F3;
@@ -19,6 +23,11 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     justifyContent: space-around;
     background-color: #979797;
     `
+
+    // const Opacity = styled.TouchableOpacity`
+    //     alignItems: "center",
+    //     padding: 10px;
+    // `
 
 
     const styles = StyleSheet.create({
@@ -50,11 +59,13 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     const AfterUser = () => {
         return (
             <>
-                <Link style={styles.navItem} to='/user/:id'>
-                    <NavText>Profile</NavText>
-                </Link>
+                {/* <Opacity onPress={() => history.push(`/user/${currentUser.id}`)}> */}
+                    <Link style={styles.navItem}>
+                        <NavText onPress={() => history.push(`/user/${currentUser.id}`)}>Profile</NavText>
+                    </Link>
+                {/* </Opacity> */}
                 <Link style={styles.navItem} to='/challenges'>
-                    <NavText>Challenges</NavText>
+                    <NavText>Home</NavText>
                 </Link>
                 <Link style={styles.navItem} to='/create_challenge'>
                     <NavText>Create</NavText>

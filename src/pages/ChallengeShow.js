@@ -91,8 +91,6 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   })
   
   const handlePress = () => {
-    // Make a post request to UserChallenge with challenge.id and user.id
-    // Make userTaskChallenges that are clones of this challenges task challenges
     const formBody = {
       user_id: currentUser.id,
       challenge_id: params.id,
@@ -112,12 +110,11 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
         setCurrentUser(fetchedUserChallenge.user)
       })
 
-      // console.log(Button.inlineStyle.rules.push(`display: none`))
       setClicked(true)
   }
 
   const createUTC = (ucFromDb) => {
-    console.log(ucFromDb)
+    // console.log(ucFromDb)
 
     let task_challenges = ucFromDb.challenge.task_challenges
     task_challenges.forEach(tc => {
@@ -134,14 +131,13 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
         body: JSON.stringify(formBody)
       })
         .then(res => res.json())
-        .then(userTaskChallenge => console.log(userTaskChallenge))
+        // .then(userTaskChallenge => console.log(userTaskChallenge))
     })
 
   }
-  // <Link style={styles.navItem} to='/user/:id'>
 
-  // console.log(Button.inlineStyle.rules.display)
-  console.log(challenge.user.name)
+  console.log(challenge.my_challenge_takers)
+
         return (
         <>
           {/* <VideoView>
@@ -158,9 +154,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             <TextOpacity onPress={() => history.push(`/user/${challenge.user.id}`)}> 
               <MainText>Created by:  {challenge.user.name}</MainText>          
             </TextOpacity>
+            <MainText> {challenge.my_challenge_takers.length} people have taken this challenge </MainText>
           </TestView>            
           {allTasks}
-          {/* Conditionally rendering based off of custom serializer attribute */}
+          {/* Conditionally rendering based off of custom serializer attribute challenge_ids */}
           {currentUser.challenge_ids.includes(challenge.id) || clicked ? null : 
           <Button onPress={handlePress}>
             <Span>Take this challenge</Span>

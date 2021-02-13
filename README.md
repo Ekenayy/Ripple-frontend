@@ -29,8 +29,11 @@ Stretch
 
 1. Add Chat feature
 2. Linear gradient
-3. Ability to see other people's pages 
-4. Page with Scroll Divs 
+3. Look into styled components animations for better feedback when you take and completed a challenge
+<!-- 3. Ability to see other people's pages  -->
+<!-- You can only edit challenges that belong to you -->
+<!-- Hitting the profile page will now refresh with the currentUser -->
+4. Page with horizontal Scroll Divs 
 5. Upload pictures
 6. Display analytics about a challenge’s cultural impact
 7. Full Auth ????

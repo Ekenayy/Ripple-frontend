@@ -7,7 +7,7 @@ import {TouchableOpacity} from 'react-native'
 import { BASE_URL } from '@env'
 
 
-function UserChallengeItem ( {challenge, userChallenge} ) {
+function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} ) {
 
     let history = useHistory()
 
@@ -73,7 +73,7 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
-           <TaskItem key={utc.id} userTaskChallenge={utc}/>
+           <TaskItem authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
         )
     })
 
@@ -102,6 +102,10 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
             .then(data => setDeleted(true))
 
     }
+
+    // console.log(thisUser)
+    // console.log(currentUser.id == thisUser.id)
+
     
     return (
 
@@ -115,7 +119,7 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
                 </Details>             
                 </TouchableOpacity>                   
                 {allTasks}
-                <ButtonView>
+                {thisUser.id == currentUser.id ? <ButtonView>
                 {!completed ? 
                     <Button onPress={handlePress}>
                         <Span>Mark Complete</Span>
@@ -126,7 +130,7 @@ function UserChallengeItem ( {challenge, userChallenge} ) {
                     <DeleteButton onPress={handleDelete}>
                         <Span>Delete</Span>
                     </DeleteButton>  
-                </ButtonView>     
+                </ButtonView> : null}
             </ItemView>
       
 

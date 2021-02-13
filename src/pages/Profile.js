@@ -47,7 +47,7 @@ function Profile ( {currentUser, setCurrentUser}) {
           abortCtrl.abort()
         }
 
-    }, [])
+    }, [formId])
 
       useEffect(() => {
         const abortCtrl = new AbortController()
@@ -73,7 +73,7 @@ function Profile ( {currentUser, setCurrentUser}) {
                   return function cleanup() {
                     abortCtrl.abort()
                   }
-      }, [])
+      }, [formId])
 
       useEffect(() => {
         const abortCtrl = new AbortController()
@@ -98,7 +98,7 @@ function Profile ( {currentUser, setCurrentUser}) {
           abortCtrl.abort()
         }
 
-      }, [])
+      }, [formId])
 
       // console.log(createdChall)
 
@@ -207,6 +207,12 @@ function Profile ( {currentUser, setCurrentUser}) {
       `
 
       const ChallengeView = styled.View`
+        width: 100%
+      `
+
+      const CreatedChallengeView = styled.View`
+        width: 100%
+        flex-direction: row;
       `
 
       const Title = styled.Text`
@@ -215,6 +221,8 @@ function Profile ( {currentUser, setCurrentUser}) {
         color: #F7F8F3;
         font-weight: bold;
         align-self:center;
+        margin-bottom: 5px;
+        margin-top: 5px;
     `
 
       // console.log(thisUser)
@@ -240,7 +248,7 @@ function Profile ( {currentUser, setCurrentUser}) {
           }
         })
           .map(uc => {
-              return <UserChallengeItem key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
+              return <UserChallengeItem thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
           })
 
         return (
@@ -269,7 +277,9 @@ function Profile ( {currentUser, setCurrentUser}) {
               {selected === 'created' ? 
               <ChallengeView>
                 <Title>Created Challenges</Title>
-                {createdChallengeList}
+                <CreatedChallengeView>
+                  {createdChallengeList}
+                </CreatedChallengeView>
               </ChallengeView> :
               <ChallengeView>
                 <Title>Taken Challenges</Title> 

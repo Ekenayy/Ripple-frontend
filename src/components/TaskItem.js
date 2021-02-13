@@ -4,7 +4,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { BASE_URL } from '@env'
 
 
-function TaskItem ( {userTaskChallenge} ) {
+function TaskItem ( {userTaskChallenge, authorized} ) {
 
     const [stateUTC, setStateUTC] = useState(userTaskChallenge)
     const [toggleCheckBox, setToggleCheckBox] = useState(stateUTC.completed)
@@ -36,13 +36,20 @@ function TaskItem ( {userTaskChallenge} ) {
             .then(fetchedUTC =>setStateUTC(fetchedUTC))
     }
 
+
     return(
         <Details key={userTaskChallenge.id}>
-            <CheckBox 
+            {authorized ? <CheckBox 
                 disabled={false}
                 value={toggleCheckBox}
                 onValueChange={handleChangeValue}
+            /> :
+            <CheckBox 
+                disabled={true}
+                value={toggleCheckBox}
+                onValueChange={handleChangeValue}
             />
+            }
             <Text>{userTaskChallenge.description}</Text>
         </Details>
     )
