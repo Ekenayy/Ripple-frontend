@@ -27,7 +27,7 @@
 
 Stretch 
 
-1. Add Chat feature
+1. Add Chat feature -- Probably not 
 2. Linear gradient
 3. Look into styled components animations for better feedback when you take and completed a challenge
 <!-- 3. Ability to see other people's pages  -->
@@ -36,4 +36,4 @@ Stretch
 4. Page with horizontal Scroll Divs 
 5. Upload pictures
 6. Display analytics about a challenge’s cultural impact
-7. Full Auth ????
+7. Full Auth ???? -- Probably not 

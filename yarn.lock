@@ -1157,6 +1157,11 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@hookform/error-message@^0.0.5":
+  "integrity" "sha512-es7eLLFA3SXNYAT8aUjvf7Gok1eMHK+9DMILtJA7ZEwYZlCCCPifhpoZmY+5SOopEtF7e+qxFOjX+MJnI3jOcg=="
+  "resolved" "https://registry.npmjs.org/@hookform/error-message/-/error-message-0.0.5.tgz"
+  "version" "0.0.5"
+
 "@jest/console@^24.9.0":
   "integrity" "sha512-Zuj6b8TnKXi3q4ymac8EQfc3ea/uhLeCGThFqXeC8H9/raaH8ARPUTdId+XyGd03Z4In0/VjD2OYFcBF09fNLQ=="
   "resolved" "https://registry.npmjs.org/@jest/console/-/console-24.9.0.tgz"
@@ -5297,7 +5302,7 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
-"react-dom@16.13.1":
+"react-dom@>=16.8.0", "react-dom@16.13.1":
   "integrity" "sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz"
   "version" "16.13.1"
@@ -5307,7 +5312,7 @@
     "prop-types" "^15.6.2"
     "scheduler" "^0.19.1"
 
-"react-hook-form@^6.15.1":
+"react-hook-form@^6.15.1", "react-hook-form@>=6.6.0":
   "integrity" "sha512-bL0LQuQ3OlM3JYfbacKtBPLOHhmgYz8Lj6ivMrvu2M6e1wnt4sbGRtPEPYCc/8z3WDbjrMwfAfLX92OsB65pFA=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-6.15.1.tgz"
   "version" "6.15.1"
@@ -5500,7 +5505,7 @@
   "resolved" "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   "version" "0.13.4"
 
-"react@*", "react@^16.8.0 || ^17", "react@>=15", "react@16.13.1":
+"react@*", "react@^16.8.0 || ^17", "react@>=15", "react@>=16.8.0", "react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.13.1.tgz"
   "version" "16.13.1"

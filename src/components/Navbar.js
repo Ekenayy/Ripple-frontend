@@ -9,19 +9,19 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     let history = useHistory()
 
     const NavText = styled.Text`
-    font-size: 12px;
-    color: #F7F8F3;
+        font-size: 12px;
+        color: #F7F8F3;
     `
 
     const Nav = styled.View`
-    position: absolute;
-    bottom: 0;
-    height: 50px;
-    width: 100%
-    display: flex;
-    flexDirection: row;
-    justifyContent: space-around;
-    background-color: #979797;
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        width: 100%
+        display: flex;
+        flexDirection: row;
+        justifyContent: space-around;
+        background-color: #979797;
     `
 
     // const Opacity = styled.TouchableOpacity`
@@ -59,19 +59,14 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     const AfterUser = () => {
         return (
             <>
-                {/* <Opacity onPress={() => history.push(`/user/${currentUser.id}`)}> */}
                     <Link style={styles.navItem}>
                         <NavText onPress={() => history.push(`/user/${currentUser.id}`)}>Profile</NavText>
                     </Link>
-                {/* </Opacity> */}
                 <Link style={styles.navItem} to='/challenges'>
                     <NavText>Home</NavText>
                 </Link>
                 <Link style={styles.navItem} to='/create_challenge'>
                     <NavText>Create</NavText>
-                </Link>
-                <Link style={styles.navItem} to='/chat'>
-                    <NavText>Chat</NavText>
                 </Link>
                 <Link style={styles.navItem} to='/' onPress={handleSignOut}>
                     <NavText>Logout</NavText>
