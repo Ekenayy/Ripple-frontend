@@ -208,20 +208,20 @@ function Profile ( {currentUser, setCurrentUser}) {
           }
         })
           .map(uc => {
-              return <UserChallengeItem thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
+              return <UserChallengeItem setUserChall={setUserChall} userChall={userChall} thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
           })
 
         return (
           <Container>
             <UserInfo>
                 <Avatar>
-                    <AvatarImage source={{uri: thisUser.picture}}/>
+                    {thisUser.picture ? <AvatarImage source={{uri: thisUser.picture}}/> : null}
                 </Avatar>
                 <Bio>
                   <BioText>{thisUser.name}</BioText>
                   <BioText>{thisUser.bio}</BioText>  
                   <IconView>
-                    <Ionicons name="md-pencil" size={30} color="black" />
+                    <Ionicons name="md-pencil" size={30} color="#E379DF" />
                   </IconView>
                 </Bio>
             </UserInfo>

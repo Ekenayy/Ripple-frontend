@@ -19,15 +19,15 @@
 <!-- 3. Make Edit Home Page to bring you to either login or sign Up -->
 <!-- Delete a userChallenge and the userChallenge actually goes away live -- Leaving a weird box  -->
 
-3. When challenges are complete -- either miniize them or make them standout somehow (They Currently immediately go to the next page but I don't like that)
-Format Reviews
+
+Format Reviews -- not bad 
 <!-- 4. Add Ids from Id library for taskChallenges -->
 5. Genre drop-downs for creating a challenge
 Edit Profile 
 
 Bugs
-1. There's a bug where I can't set Current user
-2. Completing a challenge re-renders the task component so tasks get unchecked
+1. There's a bug where I can't set Current user --- Don't delete any challenges
+2. Completing a challenge re-renders the task component so tasks get unchecked and don't automatically go to created page
 
 
 Stretch 

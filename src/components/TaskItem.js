@@ -40,7 +40,6 @@ function TaskItem ( {userTaskChallenge, authorized, completed} ) {
     return(
         
         <Details key={userTaskChallenge.id}>
-           
         {authorized ? <CheckBox 
                 disabled={false}
                 onValueChange={handleChangeValue}
@@ -74,7 +73,7 @@ function TaskItem ( {userTaskChallenge, authorized, completed} ) {
                     value={toggleCheckBox}
                 />)
                 } else {
-                   return  (<CheckBox 
+                return  (<CheckBox 
                     disabled={true}
                     value={toggleCheckBox}
                     onValueChange={handleChangeValue}

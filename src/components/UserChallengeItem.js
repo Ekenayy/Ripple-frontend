@@ -9,7 +9,7 @@ import { Alert } from 'react-native'
 
 
 
-function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} ) {
+function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, setUserChall, userChall} ) {
 
     let history = useHistory()
 
@@ -67,9 +67,9 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
     `
 
     const Span = styled.Text`
-      color: #F7F8F3;
-      padding: 12px;
-      align-self: center;
+        color: #F7F8F3;
+        padding: 12px;
+        align-self: center;
     `
 
     const allTasks = userChallenge.user_task_challenges.map(utc => {
@@ -90,10 +90,11 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
             })
         })
             .then(r => r.json())
-            .then(data => console.log(data))
+            .then(fetchedUserChall => setUserChall([...userChall, fetchedUserChall]))
 
         Alert.alert(`Congratulations on completing ${name}!`)
         setCompleted(true)
+
 
     }
 
@@ -108,13 +109,13 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
 
     }
 
-    // console.log(thisUser)
+    // console.log(userChall)
     // console.log(currentUser.id == thisUser.id)
 
     
     return (
 
-            <ItemView deleted={deleted}> 
+            <ItemView completed={completed} deleted={deleted}> 
                 <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}> 
                 <Avatar>
                     <Image source={{uri: photo_url}}/>

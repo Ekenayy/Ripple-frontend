@@ -3,11 +3,13 @@ import styled from "styled-components";
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { BASE_URL } from '@env'
+import { Alert } from 'react-native'
 
 
 
 
-function ReviewForm ( {currentUser, challenge }) {
+
+function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUser }) {
 
     const Form = styled.View`
         padding:12px;
@@ -46,7 +48,7 @@ function ReviewForm ( {currentUser, challenge }) {
 
     useEffect(() => {
         register('rating', {valueAsNumber: true, required: true, max: 5, min: 1})
-        register('description', {maxLength: 30})
+        register('description')
     }, [register])
 
     const onSubmit = data => {
@@ -64,9 +66,12 @@ function ReviewForm ( {currentUser, challenge }) {
             body: JSON.stringify(formBody)
         })
             .then(res => res.json())
-            .then(newReview => console.log(newReview))
+            .then(newReview => {
+                setReviews([...reviews, newReview])
+                setCurrentUser(newReview.user)
+            })
 
-
+        Alert.alert('Thanks for your review!')
     }
 
 

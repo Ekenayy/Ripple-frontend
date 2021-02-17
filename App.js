@@ -13,8 +13,9 @@ import Profile from './src/pages/Profile'
 import SignUp from './src/pages/SignUp'
 import ChallengeShow from './src/pages/ChallengeShow'
 import CreateChallenge from './src/pages/CreateChallenge'
+import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
 // import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { BASE_URL } from '@env'
+// import { BASE_URL } from '@env'
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
 
 
   const Body = styled.View`
+    flex:1;     
     background-color: #5D5FEF;
-    flex:1;
   `
 
   const Main = styled.ScrollView`
@@ -34,7 +35,8 @@ function App() {
   
   return (
 
-      <NativeRouter> 
+      <NativeRouter>
+        {/* <AnimatedLinearGradient customColors={presetColors.instagram} speed={4000}> */}
         <Body> 
           <Header/>
           <Main>
@@ -64,6 +66,7 @@ function App() {
           </Main>
           <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         </Body>
+        {/* </AnimatedLinearGradient>  */}
       </NativeRouter>
   );
 }

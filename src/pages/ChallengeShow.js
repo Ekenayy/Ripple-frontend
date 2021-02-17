@@ -148,6 +148,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       padding-left: 5px;
     `
 
+    const MainView = styled.View`
+      padding-bottom: 60px;
+    `
+
     // Return statement and functions are wrapped in a conditional 
   if (challenge) {
     // const url = challenge.video_url
@@ -159,7 +163,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const allTasks = challenge.task_challenges.map(tc => {
       // debugger 
       return (
-        <TaskView>
+        <TaskView key={tc.id}>
           <TaskItem authorized={false} userTaskChallenge={tc.task} />
         </TaskView>
       // <TestView key={tc.id}>      
@@ -226,7 +230,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
 
         return (
-        <>
+        <MainView>
           {/* <VideoView>
             <YouTube
               apiKey={"AIzaSyDm0mYxB4CI2wZWva9b53HumoXnKvfeMMY"}
@@ -253,7 +257,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             <Span>Take this challenge</Span>
           </Button>}
           {currentUser.challenge_ids.includes(challenge.id) && !currentUser.reviewed_challenge_ids.includes(challenge.id) ? 
-          <ReviewForm challenge={challenge} currentUser={currentUser} /> 
+          <ReviewForm setCurrentUser={setCurrentUser} reviews={reviews} setReviews={setReviews} challenge={challenge} currentUser={currentUser} /> 
           :
           null}
           { reviews.length ? 
@@ -263,7 +267,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
           </ReviewSection> 
           :
            null}
-        </>
+        </MainView>
         )
       }
       else {
