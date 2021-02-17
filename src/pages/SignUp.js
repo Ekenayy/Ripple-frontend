@@ -62,7 +62,7 @@ function SignUp ( {currentUser, setCurrentUser }) {
     const onSubmit = data => {
         let formBody = {
             name: data.name,
-            email: data.email,
+            email: data.email.toLowerCase(),
             picture: data.picture
         }
 
@@ -91,7 +91,7 @@ function SignUp ( {currentUser, setCurrentUser }) {
         } else {
             console.log('did not work')
         }
-    }, [loaded])
+    }, [currentUser])
 
     console.log(errors)
 
@@ -105,10 +105,16 @@ function SignUp ( {currentUser, setCurrentUser }) {
             <Input 
                 placeholder="First and Last Name"
                 onChangeText={text => setValue('name', text)} 
+                autoCorrect={false}
             /> 
+            <Input 
+                placeholder="Passsword"
+                secureTextEntry={true}
+            />
             <Input 
                 placeholder="Email"
                 onChangeText={text => setValue('email', text)}
+                autoCorrect={false}
             />
             <Input 
                 placeholder="Picture Url"

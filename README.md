@@ -20,16 +20,21 @@
 <!-- Delete a userChallenge and the userChallenge actually goes away live -- Leaving a weird box  -->
 
 3. When challenges are complete -- either miniize them or make them standout somehow (They Currently immediately go to the next page but I don't like that)
+Format Reviews
 <!-- 4. Add Ids from Id library for taskChallenges -->
 5. Genre drop-downs for creating a challenge
+Edit Profile 
 
+Bugs
+1. There's a bug where I can't set Current user
+2. Completing a challenge re-renders the task component so tasks get unchecked
 
 
 Stretch 
 
 1. Add Chat feature -- Probably not 
 2. Linear gradient
-3. Look into styled components animations for better feedback when you take and completed a challenge
+3. Look into styled components animations for better feedback when you take and complete a challenge -- Have an alert for now but a modal would be nice as well. 
 <!-- 3. Ability to see other people's pages  -->
 <!-- You can only edit challenges that belong to you -->
 <!-- Hitting the profile page will now refresh with the currentUser -->

@@ -4,7 +4,7 @@ import Search from '../components/Search'
 import ChallengeItem from '../components/ChallengeItem'
 import { BASE_URL } from '@env'
 
-function ChallengeList () {
+function ChallengeList ({currentUser, setCurrentUser}) {
 
   const [challenges, setChallenges] = useState([])
   const [isLoaded, setLoaded] = useState(false)
@@ -31,10 +31,22 @@ function ChallengeList () {
           }
   }, [])
 
-  // useEffect(() => {
+  //  useEffect(() => {
+  //   const abortCtrl = new AbortController();
+  //   const opts = { signal: abortCtrl.signal };
+
   //   if (challenges.length) {
-  //     setLoaded(true)
+  //      fetch(`${BASE_URL}/users/${currentUser.id}`, opts)
+  //         .then(res => res.json())
+  //         .then(data => setCurrentUser(data))
+  //         .catch((error) => {
+  //           if (error.name == 'AbortError') {
+  //             console.log('request was cancelled');
+  //           }})
   //   }
+   
+
+  //   return () => abortCtrl.abort()
   // }, [challenges])
 
 

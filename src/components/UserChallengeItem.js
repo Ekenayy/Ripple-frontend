@@ -5,6 +5,8 @@ import CheckBox from '@react-native-community/checkbox';
 import TaskItem from './TaskItem'
 import {TouchableOpacity} from 'react-native'
 import { BASE_URL } from '@env'
+import { Alert } from 'react-native'
+
 
 
 function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} ) {
@@ -17,9 +19,9 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
 
     const ItemView = styled.View`
         padding: 12px;
-        border-radius: 20px;
         width: 100%;
         display: ${props => props.deleted ? 'none' : 'flex'}
+        margin-bottom: 12px;
     `
     const Avatar = styled.View`
         width:100%
@@ -73,12 +75,11 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
-           <TaskItem authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
+           <TaskItem completed={completed} authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
         )
     })
 
-    const handlePress = () => {
-        setCompleted(true)
+    const handleComplete = () => {
 
     
         fetch(`${BASE_URL}/user_challenges/${userChallenge.id}`, {
@@ -90,6 +91,10 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
         })
             .then(r => r.json())
             .then(data => console.log(data))
+
+        Alert.alert(`Congratulations on completing ${name}!`)
+        setCompleted(true)
+
     }
 
     const handleDelete = () => {
@@ -121,7 +126,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser} )
                 {allTasks}
                 {thisUser.id == currentUser.id ? <ButtonView>
                 {!completed ? 
-                    <Button onPress={handlePress}>
+                    <Button onPress={handleComplete}>
                         <Span>Mark Complete</Span>
                     </Button> : 
                     <Button >

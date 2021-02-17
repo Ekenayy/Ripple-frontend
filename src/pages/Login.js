@@ -100,6 +100,10 @@ function Login ( {setCurrentUser, currentUser} ) {
                 placeholder="Email"
                 onChangeText={text => setValue('email', text)}
             />
+            <Input 
+                placeholder="Passsword"
+                secureTextEntry={true}
+            />
             {errors ? <ErrorSpan>{errors}</ErrorSpan> : null}
             <Button onPress={handleSubmit(onSubmit)}>
                 <Span>Log in</Span>

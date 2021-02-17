@@ -3,6 +3,14 @@ import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import { StyleSheet } from "react-native"
 import { useHistory } from "react-router-dom";
+import { Ionicons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
+import { Foundation } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons'; 
+
+
+
 
 
 function Navbar ( {currentUser, setCurrentUser} ) {
@@ -16,12 +24,17 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     const Nav = styled.View`
         position: absolute;
         bottom: 0;
-        height: 50px;
+        height: 55px;
         width: 100%
         display: flex;
         flexDirection: row;
         justifyContent: space-around;
         background-color: #979797;
+    `
+
+    const IconView = styled.View`
+        flex-direction: column;
+        align-items: center;
     `
 
     // const Opacity = styled.TouchableOpacity`
@@ -34,7 +47,7 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         navItem: {
             flex: 1,
             alignItems: "center",
-            padding: 10
+            padding: 10,
         }
     })
 
@@ -47,10 +60,17 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         return (
             <>
                 <Link style={styles.navItem} to='/login'>
-                    <NavText>Login</NavText>
+                    <IconView>
+                        <Entypo name="login" size={24} color="#F7F8F3" />
+                        <NavText>Login</NavText>
+                    </IconView>
                 </Link>
                 <Link style={styles.navItem} to='/signup'>
-                    <NavText>SignUp</NavText>
+                    <IconView>
+                        <Ionicons name="person-add" size={24} color="#F7F8F3" />
+                        <NavText>Sign Up</NavText>
+                    </IconView>
+                    
                 </Link>
             </>
         ) 
@@ -60,16 +80,29 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         return (
             <>
                     <Link style={styles.navItem}>
-                        <NavText onPress={() => history.push(`/user/${currentUser.id}`)}>Profile</NavText>
+                        <IconView>
+                            <FontAwesome name="user" size={24} color="#F7F8F3" onPress={() => history.push(`/user/${currentUser.id}`)} />
+                            <NavText>Profile</NavText>
+                        </IconView>
                     </Link>
                 <Link style={styles.navItem} to='/challenges'>
-                    <NavText>Home</NavText>
+                    <IconView>
+                        <Entypo name="home" size={24} color="#F7F8F3" />
+                        <NavText>Home</NavText>
+                    </IconView>
                 </Link>
                 <Link style={styles.navItem} to='/create_challenge'>
-                    <NavText>Create</NavText>
+                    <IconView>
+                        <Foundation name="plus" size={24} color="#F7F8F3" />
+                        <NavText>Create</NavText>
+                    </IconView>
                 </Link>
                 <Link style={styles.navItem} to='/' onPress={handleSignOut}>
-                    <NavText>Logout</NavText>
+                    <IconView>
+                        <MaterialCommunityIcons name="logout" size={24} color="#F7F8F3" />
+                        <NavText>Log Out</NavText>
+                    </IconView>
+                        
                 </Link>
             </>
         )

@@ -83,6 +83,7 @@ function ReviewForm ( {currentUser, challenge }) {
 
                 <Input
                     placeholder="Comment..." 
+                    multline={true}
                     onChangeText={text => setValue('description', text)}
                 />
                 <ErrorMessage errors={errors} name="multipleErrorInput">

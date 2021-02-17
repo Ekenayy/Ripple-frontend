@@ -6,6 +6,11 @@ import { BASE_URL } from '@env'
 import { Link } from "react-router-native";
 import ReviewItem from '../components/ReviewItem'
 import ReviewForm from '../components/ReviewForm'
+import { Alert } from 'react-native'
+import CheckBox from '@react-native-community/checkbox';
+import TaskItem from '../components/TaskItem'
+
+
 
 
 function ChallengeShow ( {currentUser, setCurrentUser}) {
@@ -43,20 +48,34 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     return () => abortCtrl.abort()
   }, [])
 
+  // useEffect(() => {
+  //   const abortCtrl = new AbortController();
+  //   const opts = { signal: abortCtrl.signal };
+
+  //   fetch(`${BASE_URL}/users/${currentUser.id}`, opts)
+  //         .then(res => res.json())
+  //         .then(data => setCurrentUser(data))
+  //         .catch((error) => {
+  //           if (error.name == 'AbortError') {
+  //             console.log('request was cancelled');
+  //           }})
+          
+
+  //   return () => abortCtrl.abort()
+  // }, [clicked])
+
   useEffect(() => {
     const abortCtrl = new AbortController();
     const opts = { signal: abortCtrl.signal };
 
-    if (challenge) {
-       fetch(`${BASE_URL}/challenge_reviews/${challenge.id}`, opts)
+       fetch(`${BASE_URL}/challenge_reviews/${params.id}`, opts)
         .then(res => res.json())
         .then(data => setReviews(data))
         .catch((error) => {
           if (error.name == 'AbortError') {
             console.log('request was cancelled');
           }})
-    }
-     
+    
 
     
     return () => abortCtrl.abort()
@@ -79,6 +98,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const ImageView = styled.View`
       width:100%
       padding: 12px;
+      padding-bottom: 0px;
     `
     const ChallengeImage = styled.Image`
       width:100%;
@@ -100,9 +120,32 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const TextOpacity = styled.TouchableOpacity`
     `
 
-    const ReviewsView = styled.View`
-      flex-direction: block;
+
+    const Title = styled.Text`
+      color: #F7F8F3;
+      font-size: 24px;
+      font-weight: bold;
+      align-self: center;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    `
+
+    const ReviewTitle = styled(Title)`
+      align-self: flex-start;
+      font-size: 18px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    `
+
+    const ReviewSection = styled.View`
+      flex-direction: column;
       width: 100%;
+      padding: 12px;
+    `
+
+    const TaskView = styled.View`
+      padding: 12px;
+      padding-left: 5px;
     `
 
     // Return statement and functions are wrapped in a conditional 
@@ -116,9 +159,12 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const allTasks = challenge.task_challenges.map(tc => {
       // debugger 
       return (
-      <TestView key={tc.id}>      
-        <MainText>{tc.task.description}</MainText>
-      </TestView>
+        <TaskView>
+          <TaskItem authorized={false} userTaskChallenge={tc.task} />
+        </TaskView>
+      // <TestView key={tc.id}>      
+      //   <MainText>{tc.task.description}</MainText>
+      // </TestView>
       )
   })
   
@@ -142,6 +188,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
         setCurrentUser(fetchedUserChallenge.user)
       })
 
+      Alert.alert(`Challenge accepted! Good luck with ${challenge.name}`)
       setClicked(true)
   }
 
@@ -168,16 +215,15 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
 
       const allReviews = reviews.map(review => {
-        return <ReviewItem review={review} />
+        return <ReviewItem key={review.id} review={review} />
       })
 
       
-    // const allReviews = reviews.map(review => {
-    //   return <ReviewItem review={review} />
-    // })
-
 
    
+    // console.log(currentUser.challenge_ids)
+    // console.log(challenge.id)
+
 
         return (
         <>
@@ -192,6 +238,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
           <TestView>
+            <Title>{challenge.name}</Title>
             <TextOpacity onPress={() => history.push(`/user/${challenge.user.id}`)}> 
               <MainText>Created by:  {challenge.user.name}</MainText>          
             </TextOpacity>
@@ -209,7 +256,13 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
           <ReviewForm challenge={challenge} currentUser={currentUser} /> 
           :
           null}
-          {reviews ? allReviews : null}
+          { reviews.length ? 
+          <ReviewSection>
+            <ReviewTitle>Reviews</ReviewTitle>
+            {allReviews}
+          </ReviewSection> 
+          :
+           null}
         </>
         )
       }

@@ -4,6 +4,7 @@ import { BASE_URL } from '@env'
 import UserChallengeItem from '../components/UserChallengeItem'
 import {useParams, useHistory } from "react-router-dom";
 import ChallengeItem from '../components/ChallengeItem'
+import { Ionicons } from '@expo/vector-icons'; 
 
 
 function Profile ( {currentUser, setCurrentUser}) {
@@ -100,54 +101,6 @@ function Profile ( {currentUser, setCurrentUser}) {
 
       }, [formId])
 
-      // console.log(createdChall)
-
-      // useEffect(() => {
-      //   const abortCtrl = new AbortController()
-      //   const opts = {signal: abortCtrl.signal}
-
-      //   fetch(`${BASE_URL}/users/${formId}`)
-      //     .then(r => r.json())
-      //     .then(thisUser => {
-      //         setIsLoaded(true)
-      //         setCurrentUser(thisUser)
-      //       }
-      //     )
-      //     .catch((err) => {
-      //       if (err.name == 'AbortError') {
-      //         console.log('request was cancelled')
-      //       } else {
-      //         console.log(err)
-      //       }
-      //     })
-          
-      //         return function cleanup() {
-      //           abortCtrl.abort()      
-      //         }
-      // }, [formId])
-
-      // useEffect(() => {
-      //   let mounted = true
-        
-      //   console.log(mounted)
-      //     if (mounted) {
-      //       fetch(`${BASE_URL}/users/${formId}`)
-      //         .then(r => r.json())
-      //         .then(thisUser => {
-      //           if (mounted) {
-      //             setIsLoaded(true)
-      //             userObj = thisUser
-      //           }
-      //         })
-      //     }
-      //         return function cleanup() {
-      //           mounted = false        
-      //         }
-      // }, [formId])
-
-      
-
-
       const Container = styled.View`
         flex-direction: column;
         padding-bottom: 50px;
@@ -158,19 +111,27 @@ function Profile ( {currentUser, setCurrentUser}) {
         margin-bottom: 15px;
       `
 
-      const Avatar = styled.View`
+      const Avatar = styled.TouchableHighlight`
         width: 50%;
         margin-right: 12px;        
         padding-left: 12px;
+        border-radius:50px;
       `
 
       const Bio = styled.View`
         flex-shrink: 1;
+        flex-direction: column;
+      `
+
+      const IconView = styled.View`
+        margin-top: auto;
+        align-self: center;
       `
 
       const AvatarImage = styled.Image`
-        width: 100%;
+        width: 160px;
         height: 160px;
+        border-radius: 80px;
       `
 
 
@@ -225,7 +186,6 @@ function Profile ( {currentUser, setCurrentUser}) {
         margin-top: 5px;
     `
 
-      // console.log(thisUser)
       
       if (isLoaded) {
 
@@ -259,7 +219,10 @@ function Profile ( {currentUser, setCurrentUser}) {
                 </Avatar>
                 <Bio>
                   <BioText>{thisUser.name}</BioText>
-                  <BioText>{thisUser.bio}</BioText>
+                  <BioText>{thisUser.bio}</BioText>  
+                  <IconView>
+                    <Ionicons name="md-pencil" size={30} color="black" />
+                  </IconView>
                 </Bio>
             </UserInfo>
             <Challenges>
