@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import { Feather } from '@expo/vector-icons';
 import {useForm} from 'react-hook-form'
 import { BASE_URL } from '@env'
 import { Alert } from 'react-native'
+import { Feather } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons'; 
 
-function User( {thisUser, setThisUser, modalVisible, setModalVisible} ) {
+
+function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisible} ) {
 
     // useEffect(() => {
     //     fetch()
@@ -42,35 +44,37 @@ function User( {thisUser, setThisUser, modalVisible, setModalVisible} ) {
     `
 
     const BioText = styled.Text`
-            font-size: 12px;
-            color: #F7F8F3;
-            margin-top: 10px;
-            flex-shrink: 1;
+        font-size: 12px;
+        color: #F7F8F3;
+        margin-top: 10px;
+        flex-shrink: 1;
+    `
+
+    const NameText = styled(BioText)`
+        font-size: 18px;
+        font-weight: bold;
     `
 
     const IconView = styled.TouchableOpacity`
         margin-top: auto;
-        align-self: center;
-        align-items: center;
-        background-color: #E379DF;
-        height:40px;
-        width:40px;
-        border-radius: 20px;
+        margin-left: 30px;
     `
 
     const Modal1 = styled.Modal`
     `
+    // #FDB54A -- Nice orange
+    
     const ModalForm = styled.View`
-        padding-left:12px;
+        padding:10px;
         margin-top: 50px;
-        background-color: white;
+        background-color: #FDB54A;
         border-radius: 20px;
         align-items: center;
         width: 90%;
     `
     const Input = styled.TextInput`
         background: #F3F5F6;
-        width: 70%;
+        width: 90%;
         border-radius:20px;
         padding-left: 12px;
         height: 30px;
@@ -78,7 +82,7 @@ function User( {thisUser, setThisUser, modalVisible, setModalVisible} ) {
     `
     const ModalHolder = styled.View`
         flex: 1;
-        margin-top: 50px;
+        margin-top: 80px;
         margin-left: 50px;
         margin-right 20px;
     `
@@ -142,11 +146,13 @@ function User( {thisUser, setThisUser, modalVisible, setModalVisible} ) {
                     {thisUser.picture ? <AvatarImage source={{uri: thisUser.picture}}/> : null}
                 </Avatar>
                 <Bio>
-                    <BioText>{thisUser.name}</BioText>
+                    <NameText>{thisUser.name}</NameText>
                     <BioText>{thisUser.bio}</BioText>  
-                    <IconView onPress={() => setModalVisible(true)}>
-                        <Feather name="edit" size={24} color="black" iconStyle="paddingTop: 10" />
-                    </IconView>
+                    {currentUser.id == thisUser.id ? <IconView onPress={() => setModalVisible(true)}>
+                        <FontAwesome name="pencil-square-o" size={24} color="#E379DF" />
+                    </IconView> 
+                    : 
+                    null}
                 </Bio>
                 <Modal1
                     animationType="slide"

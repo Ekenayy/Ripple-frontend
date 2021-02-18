@@ -177,7 +177,7 @@ function Profile ( {currentUser, setCurrentUser}) {
 
         return (
           <Container>
-            <User thisUser={thisUser} setThisUser={setThisUser} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+            <User currentUser={currentUser} thisUser={thisUser} setThisUser={setThisUser} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             <Challenges>
               <Filters>
                 <Button onPress={() => setSelected('created')}>

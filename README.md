@@ -23,16 +23,18 @@
 Format Reviews -- not bad 
 <!-- 4. Add Ids from Id library for taskChallenges -->
 5. Genre drop-downs for creating a challenge -- Eh
-6. Edit Profile 
+<!-- 6. Edit Profile  -->
 
 Bugs
 1. There's a bug where I can't set Current user --- Don't delete any challenges
 <!-- 2. Completing a challenge re-renders the task component so tasks get unchecked and don't automatically go to created page -->
 
 Next To Do:
-1. Edit Profile -- might require a modal 
-2. Error messages for creating a review 
+<!-- 1. Edit Profile -- might require a modal  -->
+<!-- 2. Error messages for creating a review  -->
 3. Add that font you wanted 
+4. Linear gradient 
+5. Wire up the real home screen with cultural impact 
 
 Stretch 
 

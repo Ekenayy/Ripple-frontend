@@ -75,7 +75,6 @@ function SignUp ( {currentUser, setCurrentUser }) {
             .then(r => r.json())
             .then(newUser => {
                 if (newUser.errors) {
-                    console.log(newUser.errors)
                     setErrors(newUser.errors)
                 } else {
                     setCurrentUser(newUser)

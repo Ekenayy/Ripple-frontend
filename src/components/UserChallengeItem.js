@@ -21,8 +21,8 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     // console.log(completed)
     const ItemView = styled.View`
         padding: 12px;
-        width: ${props => props.clicked ? '0' : "100%"}
-        display: ${props => props.deleted ? 'none' : 'flex'}
+        width: ${props => props.deleted ? '0' : "100%"}
+        display: flex;
         margin-bottom: 12px;
     `
     const Avatar = styled.View`
@@ -102,12 +102,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
             
             Alert.alert(`Congratulations on completing ${name}!`)
 
-            // if (completed) {
-            //     setClicked(true)
-            // }
     }
-
-   
 
     const handleDelete = () => {
 
@@ -116,7 +111,12 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
             headers: {'Content-Type': 'application/json'}
         })
             .then(r => r.json())
-            .then(data => setDeleted(true))
+            .then(data => {
+                const newList = userChallList.filter(uc => {
+                    return uc.id !== userChallenge.id
+                })
+                setDeleted(true)
+            })
 
     }
 

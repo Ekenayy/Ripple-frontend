@@ -30,7 +30,6 @@ function App() {
   const Main = styled.ScrollView`
   `
 
-  // console.log(currentUser)
 
   
   return (

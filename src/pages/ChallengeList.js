@@ -30,27 +30,7 @@ function ChallengeList ({currentUser, setCurrentUser}) {
             mounted = false
           }
   }, [])
-
-  //  useEffect(() => {
-  //   const abortCtrl = new AbortController();
-  //   const opts = { signal: abortCtrl.signal };
-
-  //   if (challenges.length) {
-  //      fetch(`${BASE_URL}/users/${currentUser.id}`, opts)
-  //         .then(res => res.json())
-  //         .then(data => setCurrentUser(data))
-  //         .catch((error) => {
-  //           if (error.name == 'AbortError') {
-  //             console.log('request was cancelled');
-  //           }})
-  //   }
-   
-
-  //   return () => abortCtrl.abort()
-  // }, [challenges])
-
-
-
+  
     const MainText = styled.Text`
       font-size: 24px;
       color: #F7F8F3;

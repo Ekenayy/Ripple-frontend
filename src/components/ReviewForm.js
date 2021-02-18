@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useForm} from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
@@ -10,6 +10,8 @@ import { Alert } from 'react-native'
 
 
 function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUser }) {
+
+    const [errors, setErrors] = useState("")
 
     const Form = styled.View`
         padding:12px;
@@ -43,11 +45,14 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
         padding: 12px;
         align-self: center
     `
+    const ErrorSpan = styled(Span)`
+        color: red
+    `
 
-    const {register, errors, handleSubmit, setValue} = useForm()
-
+    const {register, handleSubmit, setValue} = useForm()
+// , {valueAsNumber: true, required: true, max: 5, min: 1}
     useEffect(() => {
-        register('rating', {valueAsNumber: true, required: true, max: 5, min: 1})
+        register('rating')
         register('description')
     }, [register])
 
@@ -67,8 +72,13 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
         })
             .then(res => res.json())
             .then(newReview => {
-                setReviews([newReview, ...reviews])
-                setCurrentUser(newReview.user)
+                if (newReview.errors) {
+                    setErrors(newReview.errors)
+                } else {
+                    setReviews([newReview, ...reviews])
+                    setCurrentUser(newReview.user)
+                }
+                
             })
 
         Alert.alert('Thanks for your review!')
@@ -91,18 +101,12 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
                     multline={true}
                     onChangeText={text => setValue('description', text)}
                 />
-                <ErrorMessage errors={errors} name="multipleErrorInput">
-                    {({ messages }) =>
-                        messages &&
-                        Object.entries(messages).map(([type, message]) => (
-                        <p key={type}>{message}</p>
-                        ))
-                    }
-                </ErrorMessage>
             </Form>
+            {errors ? errors.map( (error) => <ErrorSpan key={error}>*{error}</ErrorSpan>) : null}
             <Button onPress={handleSubmit(onSubmit)}>
                 <Span>Submit rating</Span>
             </Button>
+
         </>
     
     )
