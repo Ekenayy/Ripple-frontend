@@ -30,8 +30,8 @@ function CreateChallenge ( { currentUser }) {
     }, [register])
 
     const Form = styled.ScrollView`
-    padding-left:12px;
-    padding-bottom: 50px;
+      padding-left:12px;
+      padding-bottom: 50px;
     `
 
     const TitleView = styled.View`
@@ -49,9 +49,9 @@ function CreateChallenge ( { currentUser }) {
     `
 
     const FormTitle = styled.Text`
-    font-size: 24px;
-    color: #F7F8F3;
-    align-self: center;
+      font-size: 24px;
+      color: #F7F8F3;
+      align-self: center;
     `
 
     const Button = styled.TouchableOpacity`

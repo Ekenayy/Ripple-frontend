@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import CheckBox from '@react-native-community/checkbox';
@@ -9,17 +9,19 @@ import { Alert } from 'react-native'
 
 
 
-function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, setUserChall, userChall} ) {
+function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, setUserChallList, userChallList} ) {
 
     let history = useHistory()
 
     const {name, description, id, photo_url, video_url, user } = challenge
     const [completed, setCompleted] = useState(userChallenge.completed)
     const [deleted, setDeleted] = useState(false)
+    const [clicked, setClicked] = useState(false)
 
+    // console.log(completed)
     const ItemView = styled.View`
         padding: 12px;
-        width: 100%;
+        width: ${props => props.clicked ? '0' : "100%"}
         display: ${props => props.deleted ? 'none' : 'flex'}
         margin-bottom: 12px;
     `
@@ -90,13 +92,22 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
             })
         })
             .then(r => r.json())
-            .then(fetchedUserChall => setUserChall([...userChall, fetchedUserChall]))
+            .then(fetchedUserChall => {
+                const newList = userChallList.filter(uc => {
+                    return uc.id !== userChallenge.id
+                })
+                setUserChallList([...newList, fetchedUserChall])
+            })
+            setCompleted(true)
+            
+            Alert.alert(`Congratulations on completing ${name}!`)
 
-        Alert.alert(`Congratulations on completing ${name}!`)
-        setCompleted(true)
-
-
+            // if (completed) {
+            //     setClicked(true)
+            // }
     }
+
+   
 
     const handleDelete = () => {
 
@@ -114,8 +125,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
 
     
     return (
-
-            <ItemView completed={completed} deleted={deleted}> 
+            <ItemView clicked={clicked} deleted={deleted}> 
                 <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}> 
                 <Avatar>
                     <Image source={{uri: photo_url}}/>

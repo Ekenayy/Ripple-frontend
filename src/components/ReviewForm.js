@@ -67,7 +67,7 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
         })
             .then(res => res.json())
             .then(newReview => {
-                setReviews([...reviews, newReview])
+                setReviews([newReview, ...reviews])
                 setCurrentUser(newReview.user)
             })
 

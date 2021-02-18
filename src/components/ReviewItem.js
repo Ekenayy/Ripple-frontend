@@ -10,6 +10,7 @@ function ReviewItem ( {review}) {
 
     const RatingView = styled.View`
         borderBottomWidth: .5px;
+        margin-top: 10px;
     `
 
     const AuthorDetails = styled.TouchableOpacity`

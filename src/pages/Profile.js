@@ -4,7 +4,8 @@ import { BASE_URL } from '@env'
 import UserChallengeItem from '../components/UserChallengeItem'
 import {useParams, useHistory } from "react-router-dom";
 import ChallengeItem from '../components/ChallengeItem'
-import { Ionicons } from '@expo/vector-icons'; 
+import User from '../components/User'
+
 
 
 function Profile ( {currentUser, setCurrentUser}) {
@@ -14,6 +15,7 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [userChall, setUserChall] = useState([])
     const [selected, setSelected] = useState("")
     const [thisUser, setThisUser] = useState(null)
+    const [modalVisible, setModalVisible] = useState(false)
 
     let params = useParams()
     let formId
@@ -103,46 +105,10 @@ function Profile ( {currentUser, setCurrentUser}) {
 
       const Container = styled.View`
         flex-direction: column;
-        padding-bottom: 50px;
+        padding-bottom: 55px;
       `
-
-      const UserInfo = styled.View`
-        flex-direction: row;
-        margin-bottom: 15px;
-      `
-
-      const Avatar = styled.TouchableHighlight`
-        width: 50%;
-        margin-right: 12px;        
-        padding-left: 12px;
-        border-radius:50px;
-      `
-
-      const Bio = styled.View`
-        flex-shrink: 1;
-        flex-direction: column;
-      `
-
-      const IconView = styled.View`
-        margin-top: auto;
-        align-self: center;
-      `
-
-      const AvatarImage = styled.Image`
-        width: 160px;
-        height: 160px;
-        border-radius: 80px;
-      `
-
 
       const Challenges = styled.View`
-      `
-
-      const BioText = styled.Text`
-            font-size: 12px;
-            color: #F7F8F3;
-            margin-top: 10px;
-            flex-shrink: 1;
       `
 
       const Filters = styled.View`
@@ -151,14 +117,13 @@ function Profile ( {currentUser, setCurrentUser}) {
       `
 
       const Button = styled.TouchableOpacity`
-      background: #03DAC5;
-      width: 120px;
-      height: 30px;
-      margin: 12px;
-      border-radius:20px;
-      align-items: center
+        background: #03DAC5;
+        width: 120px;
+        height: 30px;
+        margin: 12px;
+        border-radius:20px;
+        align-items: center
       `
-
 
       const Span = styled.Text`
       color: #F7F8F3
@@ -184,9 +149,8 @@ function Profile ( {currentUser, setCurrentUser}) {
         align-self:center;
         margin-bottom: 5px;
         margin-top: 5px;
-    `
+      `
 
-      
       if (isLoaded) {
 
         const handleCreatedClick = () => {
@@ -208,23 +172,12 @@ function Profile ( {currentUser, setCurrentUser}) {
           }
         })
           .map(uc => {
-              return <UserChallengeItem setUserChall={setUserChall} userChall={userChall} thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
+              return <UserChallengeItem setUserChallList={setUserChall} userChallList={userChall} thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
           })
 
         return (
           <Container>
-            <UserInfo>
-                <Avatar>
-                    {thisUser.picture ? <AvatarImage source={{uri: thisUser.picture}}/> : null}
-                </Avatar>
-                <Bio>
-                  <BioText>{thisUser.name}</BioText>
-                  <BioText>{thisUser.bio}</BioText>  
-                  <IconView>
-                    <Ionicons name="md-pencil" size={30} color="#E379DF" />
-                  </IconView>
-                </Bio>
-            </UserInfo>
+            <User thisUser={thisUser} setThisUser={setThisUser} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
             <Challenges>
               <Filters>
                 <Button onPress={() => setSelected('created')}>
