@@ -102,7 +102,7 @@ function Navbar ( {currentUser, setCurrentUser} ) {
                         <NavText>Create</NavText>
                     </IconView>
                 </Link>
-                <Link style={styles.navItem} to='/' onPress={handleSignOut}>
+                <Link style={styles.navItem} to='/welcome' onPress={handleSignOut}>
                     <IconView>
                         <MaterialCommunityIcons name="logout" size={24} color="#F7F8F3" />
                         <NavText>Log Out</NavText>

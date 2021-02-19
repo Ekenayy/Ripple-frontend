@@ -14,6 +14,10 @@ import CreateChallenge from './src/pages/CreateChallenge'
 import Opening from './src/pages/Opening'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet} from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+
+
 
 
 function App() {
@@ -22,6 +26,9 @@ function App() {
 
   let history = useHistory()
 
+  let [fontsLoaded] = useFonts({
+    Inter_900Black,
+  });
 
   const Body = styled.View`
     flex:1;     
@@ -43,10 +50,10 @@ function App() {
   })
   // height: 1200,
 
-
+  if (!fontsLoaded) {
+    return <AppLoading/>
+  } else {
   return (
-
-
       <NativeRouter>
         <Body> 
           <LinearGradient
@@ -58,7 +65,7 @@ function App() {
           <Main>
             <Switch>
               <Route exact path='/'>
-                <Opening currentUser={currentUser}/>
+                <Opening font={Inter_900Black} currentUser={currentUser}/>
               </Route> 
               <Route exact path='/welcome'>
                 <Welcome/>
@@ -86,6 +93,7 @@ function App() {
           <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         </Body>
       </NativeRouter>
-  );
+    );
+  }
 }
 export default App

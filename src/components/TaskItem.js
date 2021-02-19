@@ -15,10 +15,11 @@ function TaskItem ( {userTaskChallenge, authorized, completed} ) {
     `
 
     const Text = styled.Text`
-        font-size: 12px;
-        font-weight:500;
+        font-size: 14px;
+        font-weight: 600;
         color: #F7F8F3;
         align-self:center;
+        padding-right: 20px;
     `
     const handleChangeValue = (newValue) => {
         setToggleCheckBox(newValue)
@@ -45,6 +46,7 @@ function TaskItem ( {userTaskChallenge, authorized, completed} ) {
                 onValueChange={handleChangeValue}
                 completed
                 value={toggleCheckBox}
+                onCheckColor="#5D5FEF"
             /> :
             <CheckBox 
                 disabled={true}
@@ -56,28 +58,5 @@ function TaskItem ( {userTaskChallenge, authorized, completed} ) {
         </Details>
     )
 }
- {/* { () => {
 
-                if (authorized && completed) {
-                    return (<CheckBox 
-                        disabled={false}
-                        onValueChange={handleChangeValue}
-                        completed
-                        value={true}
-                    /> )
-                } else if (authorized) {
-                  return  (<CheckBox 
-                    disabled={false}
-                    onValueChange={handleChangeValue}
-                    completed
-                    value={toggleCheckBox}
-                />)
-                } else {
-                return  (<CheckBox 
-                    disabled={true}
-                    value={toggleCheckBox}
-                    onValueChange={handleChangeValue}
-                />)
-                }
-            }}  */}
 export default TaskItem

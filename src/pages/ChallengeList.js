@@ -40,7 +40,7 @@ function ChallengeList ({currentUser, setCurrentUser}) {
     const MainView = styled.View`
       flex-direction: row;
       flex-wrap: wrap
-      padding-bottom: 50px;
+      padding-bottom: 55px;
     `
 
     // Also need to pass the ScrollView a prop of horizontal={true}

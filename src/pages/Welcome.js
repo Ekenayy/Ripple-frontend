@@ -2,17 +2,17 @@ import React from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import logo from "../Ripple-Logo-2-transparent.png"
-
+import AppLoading from 'expo-app-loading';
+import { useFonts,  Quicksand_700Bold} from '@expo-google-fonts/quicksand';
 
 function Welcome () {
 
   let history = useHistory()
 
-  // const MainView = styled.ScrollView`
-  //     flex-direction: row;
-  //     flex-wrap: wrap
-  //     padding-bottom: 50px;
-  //   `
+
+  let [fontsLoaded] = useFonts({
+    Quicksand_700Bold
+  });
 
   const MainView = styled.View`
     padding-left: 12px;
@@ -26,7 +26,7 @@ function Welcome () {
   `
 
   const SignUpButton = styled(LoginButton)`
-    background: #E379DF;
+    background: #7172f5;
   `
   const Span = styled.Text`
     color: #F7F8F3
@@ -39,13 +39,13 @@ function Welcome () {
     flex-wrap: wrap
     align-self: center;
   `
-  
+  // #FDB54A
   const StatItem = styled.View`
     flex-direction: row;
     padding-top: 30px;
     padding-bottom: 30px;
     margin-right: 20px;
-    background-color: #FDB54A;
+    background-color: #03DAC5;
     border-radius: 20px;
   `
 
@@ -67,7 +67,6 @@ function Welcome () {
     color: #F7F8F3;
     align-self: center;
     padding-top: 10px;
-    font-weight: bold;
   `
   
   const DetailsText = styled(NumberText)`
@@ -94,7 +93,9 @@ function Welcome () {
   `
 
   // source={{uri: photo_url}}
-
+  if (!fontsLoaded) {
+    return <AppLoading/>
+  } else {
     return (
       <MainView>
         <LogoView>
@@ -106,8 +107,8 @@ function Welcome () {
               <Image source={{uri: "https://t3.ftcdn.net/jpg/02/59/80/56/360_F_259805610_zwLLYPs35RoaiaDESXJ2DCviM9yCbmJR.jpg"}}/>
             </Avatar>
             <TextView>
-              <NumberText>50</NumberText>
-              <DetailsText>Grandmas Hugged</DetailsText>
+              <NumberText style={{fontFamily: 'Quicksand_700Bold'}}>50</NumberText>
+              <DetailsText>Grandmas hugged</DetailsText>
             </TextView>
           </StatItem>
 
@@ -116,7 +117,7 @@ function Welcome () {
               <Image source={{uri: "https://www.freevector.com/uploads/vector/preview/25661/gossip4.jpg"}}/>
             </Avatar>
             <TextView>
-              <NumberText>20</NumberText>
+              <NumberText style={{fontFamily: 'Quicksand_700Bold'}}>20</NumberText>
               <DetailsText>Childhood friends called</DetailsText>
             </TextView>
           </StatItem>
@@ -126,8 +127,8 @@ function Welcome () {
               <Image source={{uri: "https://image.freepik.com/free-vector/female-characters-with-cosmetic-facial-beauty-mask_258386-133.jpg"}}/>
             </Avatar>
             <TextView>
-              <NumberText>15</NumberText>
-              <DetailsText>Beauty Masks Applied</DetailsText>
+              <NumberText style={{fontFamily: 'Quicksand_700Bold'}}>15</NumberText>
+              <DetailsText>Beauty masks applied</DetailsText>
             </TextView>
           </StatItem>
 
@@ -142,6 +143,7 @@ function Welcome () {
         </OptionView>
       </MainView>
     )
+  }
 }
 
 export default Welcome

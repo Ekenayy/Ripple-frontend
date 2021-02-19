@@ -107,7 +107,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
     const Button = styled.TouchableOpacity`
       background: #03DAC5;
-      width: 100px;
+      width: 130px;
       margin: 12px;
       border-radius:20px;
     `
@@ -115,6 +115,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const Span = styled.Text`
       color: #F7F8F3
       padding: 12px;
+      font-weight: bold;
     `
 
     const TextOpacity = styled.TouchableOpacity`
@@ -254,7 +255,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
           null
           : 
           <Button onPress={handlePress}>
-            <Span>Take this challenge</Span>
+            <Span>Take challenge</Span>
           </Button>}
           {currentUser.challenge_ids.includes(challenge.id) && !currentUser.reviewed_challenge_ids.includes(challenge.id) ? 
           <ReviewForm setCurrentUser={setCurrentUser} reviews={reviews} setReviews={setReviews} challenge={challenge} currentUser={currentUser} /> 

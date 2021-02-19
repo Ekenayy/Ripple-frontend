@@ -31,7 +31,7 @@ function CreateChallenge ( { currentUser }) {
 
     const Form = styled.ScrollView`
       padding-left:12px;
-      padding-bottom: 50px;
+      padding-bottom: 55px;
     `
 
     const TitleView = styled.View`
@@ -76,10 +76,9 @@ function CreateChallenge ( { currentUser }) {
         align-self: center
     `
 
-    const MainText = styled.Text`
-      font-size: 24px;
+    const MainText = styled(Span)`
+      font-size: 18px;
       color: #F7F8F3;
-      margin-top: 10px;
     `
 
     const DoneView = styled.View`
@@ -156,6 +155,7 @@ function CreateChallenge ( { currentUser }) {
 
     }
 
+
     // Creating the association between challenges and tasks
       const onFinalSubmit = data => {
 
@@ -183,66 +183,66 @@ function CreateChallenge ( { currentUser }) {
           <TitleView>            
               <FormTitle>Create Your Challenge</FormTitle>
           </TitleView>
-         { challengeClicked ? 
-         <DoneView>
-           <Span>{challenge.name}</Span> 
-           <ImageView>
-                <Image source={{uri: challenge.photo_url}}/>
-              </ImageView>
-         </DoneView>
-         : 
-         <> 
-          <Input 
-              placeholder="Name"
-              onChangeText={text => setValue('name', text)}
-          />
-          <Input 
-              placeholder="Description"
-              onChangeText={text => setValue('description', text)}
-          />
-          <Input 
-              placeholder="Genre (i.e. Forgiveness, self care, empathy, mixed)"
-              onChangeText={text => setValue('genre', text)}
-          />
-          <Input 
-              placeholder="Youtube Url (Optional)"
-              onChangeText={text => setValue('videoUrl', text)}
-          />
-          <Input 
-              placeholder="Photo Url"
-              onChangeText={text => setValue('photoUrl', text)}
-          />
-          <Button onPress={handleSubmit(onChallengeSubmit)}>
-              <Span>Create Challenge</Span>
-          </Button>
-        </>
-          }
-        { taskClicked ?
-        <>
-          <FormTitle>Assignments Created</FormTitle>
-        </>
-        : 
-        <>
-          <Span> Add Your Assignments </Span>
-          <Input 
-              placeholder="Assignment 1"
-              onChangeText={text => setValue('task1', text)}
-          />
-          <Input 
-              placeholder="Assignment 2"
-              onChangeText={text => setValue('task2', text)}
-          />
-          <Input 
-              placeholder="Assignment 3"
-              onChangeText={text => setValue('task3', text)}
-          />
-          <TaskButton onPress={handleSubmit(onTaskSubmit)}>
-              <Span>Create Assignments</Span>
-          </TaskButton>
-        </>}
-          <Button onPress={handleSubmit(onFinalSubmit)}>
-              <Span>Finalize</Span>
-          </Button>
+          { challengeClicked ? 
+          <DoneView>
+            <Span>{challenge.name}</Span> 
+            <ImageView>
+                  <Image source={{uri: challenge.photo_url}}/>
+                </ImageView>
+          </DoneView>
+          : 
+          <> 
+            <Input 
+                placeholder="Name"
+                onChangeText={text => setValue('name', text)}
+            />
+            <Input 
+                placeholder="Description"
+                onChangeText={text => setValue('description', text)}
+            />
+            <Input 
+                placeholder="Genre (i.e. Forgiveness, self care, empathy, mixed)"
+                onChangeText={text => setValue('genre', text)}
+            />
+            <Input 
+                placeholder="Youtube Url (Optional)"
+                onChangeText={text => setValue('videoUrl', text)}
+            />
+            <Input 
+                placeholder="Photo Url"
+                onChangeText={text => setValue('photoUrl', text)}
+            />
+            <Button onPress={handleSubmit(onChallengeSubmit)}>
+                <Span>Create Challenge</Span>
+            </Button>
+          </>
+            }
+          { taskClicked ?
+          <>
+            <FormTitle>Assignments Created</FormTitle>
+          </>
+          : 
+          <>
+            <MainText> Add Your Assignments </MainText>
+            <Input 
+                placeholder="Assignment 1"
+                onChangeText={text => setValue('task1', text)}
+            />
+            <Input 
+                placeholder="Assignment 2"
+                onChangeText={text => setValue('task2', text)}
+            />
+            <Input 
+                placeholder="Assignment 3"
+                onChangeText={text => setValue('task3', text)}
+            />
+            <TaskButton onPress={handleSubmit(onTaskSubmit)}>
+                <Span>Create Assignments</Span>
+            </TaskButton>
+          </>}
+            <Button onPress={handleSubmit(onFinalSubmit)}>
+                <Span>Finalize</Span>
+            </Button>
       </Form>    
         )
 

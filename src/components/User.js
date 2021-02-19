@@ -140,6 +140,11 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
 
     }
 
+
+if (!thisUser) {
+    return null
+} else {
+
     return (
         <UserInfo>
                 <Avatar>
@@ -203,7 +208,7 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
                 </Modal1>
             </UserInfo>
     )
-    
+    }
 }
 
 export default User

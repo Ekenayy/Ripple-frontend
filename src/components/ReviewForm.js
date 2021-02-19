@@ -47,6 +47,7 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
     `
     const ErrorSpan = styled(Span)`
         color: red
+        font-weight: bold;
     `
 
     const {register, handleSubmit, setValue} = useForm()
@@ -77,11 +78,11 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
                 } else {
                     setReviews([newReview, ...reviews])
                     setCurrentUser(newReview.user)
+                    Alert.alert('Thanks for your review!')
                 }
                 
             })
 
-        Alert.alert('Thanks for your review!')
     }
 
 
@@ -89,7 +90,7 @@ function ReviewForm ( {currentUser, challenge, reviews, setReviews, setCurrentUs
         <>
             <Form>
                 <RatingInput 
-                    placeholder="Rating (1-5)" 
+                    placeholder="Rating (0-5)" 
                     onChangeText={text => setValue('rating', text)}
                     keyboardType="numeric"
                 />                    

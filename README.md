@@ -32,10 +32,11 @@ Bugs
 Next To Do:
 <!-- 1. Edit Profile -- might require a modal  -->
 <!-- 2. Error messages for creating a review  -->
-3. Add a font for numbers on impact page page 
+<!-- 3. Add a font for numbers on impact page page  -->
 <!-- 4. Linear gradient  -->
 <!-- 5. Wire up the real home screen with cultural impact  -->
 <!-- 6. Maybe add stars to reviews????? -->
+Sign in as Lebron James
 
 Stretch 
 
