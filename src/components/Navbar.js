@@ -8,10 +8,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
-
-
-
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 function Navbar ( {currentUser, setCurrentUser} ) {
     let history = useHistory()
@@ -19,6 +16,7 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     const NavText = styled.Text`
         font-size: 12px;
         color: #F7F8F3;
+        font-weight: bold;
     `
 
     const Nav = styled.View`
@@ -29,7 +27,7 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         display: flex;
         flexDirection: row;
         justifyContent: space-around;
-        background-color: #979797;
+        background-color: #bab6b6;
     `
 
     const IconView = styled.View`
@@ -37,19 +35,26 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         align-items: center;
     `
 
-    // const Opacity = styled.TouchableOpacity`
-    //     alignItems: "center",
-    //     padding: 10px;
-    // `
-
-
     const styles = StyleSheet.create({
         navItem: {
             flex: 1,
             alignItems: "center",
             padding: 10,
-        }
+        },
+        linearGradient: {
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          position: 'absolute',
+          height: 55,
+          width: 395, 
+          bottom: 0,
+          borderRadius: 25
+        },
     })
+
+    // 400
 
     const handleSignOut = () => {
         setCurrentUser(null)
@@ -109,9 +114,16 @@ function Navbar ( {currentUser, setCurrentUser} ) {
     }
 
     return (
-        <Nav>
+        // <Nav>
+            <LinearGradient
+            style={styles.linearGradient}
+            colors={['#4141b5', '#4f50ab', '#5e5eeb'  ]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            >            
             {currentUser ? <AfterUser/> : <BeforeUser/>}
-        </Nav>
+            </LinearGradient>
+        // </Nav>
     )
 }
 

@@ -1,10 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
 import styled from "styled-components";
-import { NativeRouter, Switch, Route, Link } from "react-router-native";
+import { NativeRouter, Switch, Route } from "react-router-native";
+import { useHistory } from "react-router-dom";
 import Navbar from './src/components/Navbar'
-import { EdgeInsetsPropType } from 'react-native';
 import Header from './src/components/Header'
 import Welcome from './src/pages/Welcome'
 import Login from './src/pages/Login'
@@ -13,13 +11,16 @@ import Profile from './src/pages/Profile'
 import SignUp from './src/pages/SignUp'
 import ChallengeShow from './src/pages/ChallengeShow'
 import CreateChallenge from './src/pages/CreateChallenge'
-import AnimatedLinearGradient, {presetColors} from 'react-native-animated-linear-gradient'
-// import { SafeAreaProvider } from 'react-native-safe-area-context'
-// import { BASE_URL } from '@env'
+import Opening from './src/pages/Opening'
+import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet} from 'react-native';
+
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
+
+  let history = useHistory()
 
 
   const Body = styled.View`
@@ -28,21 +29,40 @@ function App() {
   `
 
   const Main = styled.ScrollView`
+
   `
 
+  const styles = StyleSheet.create({
+    background: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      height: 1200,
+    }
+  })
+  // height: 1200,
 
-  
+
   return (
 
+
       <NativeRouter>
-        {/* <AnimatedLinearGradient customColors={presetColors.instagram} speed={4000}> */}
         <Body> 
+          <LinearGradient
+          // Background Linear Gradient
+          colors={['#5D5FEF', "#E379DF", "#FDB54A"]}
+          style={styles.background}
+            />
           <Header/>
           <Main>
             <Switch>
               <Route exact path='/'>
+                <Opening currentUser={currentUser}/>
+              </Route> 
+              <Route exact path='/welcome'>
                 <Welcome/>
-              </Route>
+              </Route> 
               <Route exact path='/user/:id'>
                 <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
               </Route>
@@ -65,7 +85,6 @@ function App() {
           </Main>
           <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
         </Body>
-        {/* </AnimatedLinearGradient>  */}
       </NativeRouter>
   );
 }

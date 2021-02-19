@@ -32,9 +32,10 @@ Bugs
 Next To Do:
 <!-- 1. Edit Profile -- might require a modal  -->
 <!-- 2. Error messages for creating a review  -->
-3. Add that font you wanted 
-4. Linear gradient 
-5. Wire up the real home screen with cultural impact 
+3. Add a font for numbers on impact page page 
+<!-- 4. Linear gradient  -->
+<!-- 5. Wire up the real home screen with cultural impact  -->
+<!-- 6. Maybe add stars to reviews????? -->
 
 Stretch 
 
@@ -44,7 +45,7 @@ Stretch
 <!-- 3. Ability to see other people's pages  -->
 <!-- You can only edit challenges that belong to you -->
 <!-- Hitting the profile page will now refresh with the currentUser -->
-4. Page with horizontal Scroll Divs 
+<!-- 4. Page with horizontal Scroll Divs  -->
 5. Upload pictures
-6. Display analytics about a challenge’s cultural impact
+<!-- 6. Display analytics about a challenge’s cultural impact -->
 7. Full Auth ???? -- Probably not 

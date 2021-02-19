@@ -44,7 +44,7 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
     `
 
     const BioText = styled.Text`
-        font-size: 12px;
+        font-size: 14px;
         color: #F7F8F3;
         margin-top: 10px;
         flex-shrink: 1;
@@ -149,7 +149,7 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
                     <NameText>{thisUser.name}</NameText>
                     <BioText>{thisUser.bio}</BioText>  
                     {currentUser.id == thisUser.id ? <IconView onPress={() => setModalVisible(true)}>
-                        <FontAwesome name="pencil-square-o" size={24} color="#E379DF" />
+                        <FontAwesome name="pencil-square-o" size={24} color="#f582f0" />
                     </IconView> 
                     : 
                     null}

@@ -60,7 +60,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     `
 
     const DeleteButton = styled(Button)`
-        background: #E379DF
+        background: #7172f5
     `
 
     const ButtonView = styled.View`

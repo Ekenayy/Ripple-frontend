@@ -25,7 +25,7 @@ function Header () {
     return (
         <HeaderView>
             <Logo source={logo}/>
-            <HeaderText>Ripple</HeaderText>       
+            {/* <HeaderText>Ripple</HeaderText>        */}
         </HeaderView>
     )
 }
