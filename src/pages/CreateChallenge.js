@@ -178,6 +178,39 @@ function CreateChallenge ( { currentUser }) {
 
       }
 
+      function AssignmentList () {
+        if (challengeClicked && !taskClicked) {
+          return (
+          <>
+            <MainText> Add Your Assignments </MainText>
+            <Input 
+                placeholder="Assignment 1"
+                onChangeText={text => setValue('task1', text)}
+            />
+            <Input 
+                placeholder="Assignment 2"
+                onChangeText={text => setValue('task2', text)}
+            />
+            <Input 
+                placeholder="Assignment 3"
+                onChangeText={text => setValue('task3', text)}
+            />
+            <TaskButton onPress={handleSubmit(onTaskSubmit)}>
+                <Span>Create Assignments</Span>
+            </TaskButton>
+          </> 
+          )
+        }
+        else if (taskClicked) {
+
+          return (
+            <FormTitle>Assignments Created</FormTitle>
+          )
+        } else {
+          return null
+        }
+      }
+
         return (
           <Form>
           <TitleView>            
@@ -217,32 +250,12 @@ function CreateChallenge ( { currentUser }) {
             </Button>
           </>
             }
-          { taskClicked ?
-          <>
-            <FormTitle>Assignments Created</FormTitle>
-          </>
-          : 
-          <>
-            <MainText> Add Your Assignments </MainText>
-            <Input 
-                placeholder="Assignment 1"
-                onChangeText={text => setValue('task1', text)}
-            />
-            <Input 
-                placeholder="Assignment 2"
-                onChangeText={text => setValue('task2', text)}
-            />
-            <Input 
-                placeholder="Assignment 3"
-                onChangeText={text => setValue('task3', text)}
-            />
-            <TaskButton onPress={handleSubmit(onTaskSubmit)}>
-                <Span>Create Assignments</Span>
-            </TaskButton>
-          </>}
+            <AssignmentList/>
+            {taskClicked ? 
             <Button onPress={handleSubmit(onFinalSubmit)}>
                 <Span>Finalize</Span>
-            </Button>
+            </Button> 
+            : null}
       </Form>    
         )
 

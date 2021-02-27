@@ -17,8 +17,16 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const [completed, setCompleted] = useState(userChallenge.completed)
     const [deleted, setDeleted] = useState(false)
     const [clicked, setClicked] = useState(false)
+    const [utcs, setUtcs] = useState([])
 
     // console.log(completed)
+
+    useEffect(() => {
+        if (userChallenge) {
+            setUtcs(userChallenge.user_task_challenges)
+        }
+    }, [userChallenge])
+
     const ItemView = styled.View`
         padding: 12px;
         width: ${props => props.deleted ? '0' : "100%"}
@@ -77,7 +85,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
-           <TaskItem completed={completed} authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
+           <TaskItem utcs={utcs} setUtcs={setUtcs} completed={completed} authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
         )
     })
 

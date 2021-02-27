@@ -4,7 +4,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { BASE_URL } from '@env'
 
 
-function TaskItem ( {userTaskChallenge, authorized, completed} ) {
+function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) {
 
     const [stateUTC, setStateUTC] = useState(userTaskChallenge)
     const [toggleCheckBox, setToggleCheckBox] = useState(stateUTC.completed)
