@@ -34,7 +34,10 @@ function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) 
             body: JSON.stringify(formBody)
         })
             .then(r => r.json())
-            .then(fetchedUTC =>setStateUTC(fetchedUTC))
+            .then(fetchedUTC => {
+                
+                setStateUTC(fetchedUTC)
+            })
     }
 
 

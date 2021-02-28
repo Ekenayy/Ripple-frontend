@@ -21,11 +21,26 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
 
     // console.log(completed)
 
-    useEffect(() => {
-        if (userChallenge) {
-            setUtcs(userChallenge.user_task_challenges)
-        }
-    }, [userChallenge])
+    // useEffect(() => {
+    //         setUtcs(userChallenge.user_task_challenges)
+    // }, [userChallenge])
+
+    // useEffect(() => {
+    //     let incompleteTaskArr
+
+    //     utcs.map(utc => {
+    //         if (!utc.completed) {
+    //             incompleteTaskArr.push(utc)
+    //         }                
+    //     })
+
+    //     if (!incompleteTaskArr.length) {
+    //         setCompleted(true)
+    //     }
+        
+    // }, [utcs])
+
+    // console.log(utcs)
 
     const ItemView = styled.View`
         padding: 12px;
@@ -85,9 +100,18 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
-           <TaskItem utcs={utcs} setUtcs={setUtcs} completed={completed} authorized={currentUser.id == thisUser.id} key={utc.id} userTaskChallenge={utc}/>
+            <TaskItem key={utc.id} utcs={utcs} setUtcs={setUtcs} setCompleted={setCompleted} completed={completed} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
         )
+
     })
+
+    // const tasksFromState = utcs.map(utc => {
+    //     return (
+    //         <TaskItem key={utc.id} utcs={utcs} setUtcs={setUtcs} setCompleted={setCompleted} completed={completed} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
+    //      )
+    // })
+
+    // console.log(utcs)
 
     const handleComplete = () => {
 
@@ -143,6 +167,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
                 </Details>             
                 </TouchableOpacity>                   
                 {allTasks}
+                {/* {tasksFromState} */}
                 {thisUser.id == currentUser.id ? <ButtonView>
                 {!completed ? 
                     <Button onPress={handleComplete}>

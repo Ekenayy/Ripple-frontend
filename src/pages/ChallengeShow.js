@@ -24,6 +24,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   const [userChallenge, setUserChallenge] = useState()
   const [clicked, setClicked] = useState(false)
   const [reviews, setReviews] = useState([])
+  const [modalVisible, setModalVisible] = useState(false)
 
   let youtubeId
 
@@ -107,15 +108,19 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
     const Button = styled.TouchableOpacity`
       background: #03DAC5;
-      width: 130px;
+      width: 150px;
       margin: 12px;
       border-radius:20px;
+    `
+    const ReviewButton = styled(Button)`
+      align-self: center
     `
 
     const Span = styled.Text`
       color: #F7F8F3
       padding: 12px;
       font-weight: bold;
+      align-self: center;
     `
 
     const TextOpacity = styled.TouchableOpacity`
@@ -223,6 +228,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
         return <ReviewItem key={review.id} review={review} />
       })
 
+      const handleReviewPress = (() => {  
+        setModalVisible(true)
+      })
+
       
 
    
@@ -258,9 +267,12 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             <Span>Take challenge</Span>
           </Button>}
           {currentUser.challenge_ids.includes(challenge.id) && !currentUser.reviewed_challenge_ids.includes(challenge.id) ? 
-          <ReviewForm setCurrentUser={setCurrentUser} reviews={reviews} setReviews={setReviews} challenge={challenge} currentUser={currentUser} /> 
+          <ReviewButton onPress={handleReviewPress}>
+            <Span>Leave a Review</Span>
+          </ReviewButton>
           :
           null}
+          {modalVisible ? <ReviewForm setModalVisible={setModalVisible} modalVisible={modalVisible} setCurrentUser={setCurrentUser} reviews={reviews} setReviews={setReviews} challenge={challenge} currentUser={currentUser} /> : null}
           { reviews.length ? 
           <ReviewSection>
             <ReviewTitle>Reviews</ReviewTitle>
