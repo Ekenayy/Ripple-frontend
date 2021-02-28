@@ -35,7 +35,7 @@ Bugs
 
 Next To Do:
 1. Have the challenge automatically become complete when you finish all the tasks
-2. Change checkmark library for task items on IOS
+2. Change checkbox library for task items on IOS
 4. Upload pictures 
 3. Add a chat feature 
 5. Full Auth

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import { StyleSheet } from "react-native"
@@ -12,6 +12,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 function Navbar ( {currentUser, setCurrentUser} ) {
     let history = useHistory()
+
+    const [ios, setIos] = useState(Platform.OS === 'ios')
 
     const NavText = styled.Text`
         font-size: 12px;
@@ -42,15 +44,15 @@ function Navbar ( {currentUser, setCurrentUser} ) {
             padding: 10,
         },
         linearGradient: {
-          alignItems: 'center',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          position: 'absolute',
-          height: 55,
-          width: 395, 
-          bottom: 0,
-          borderRadius: 25
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            position: 'absolute',
+            height: 55,
+            width: ios ? 420 : 395,
+            bottom: 0,
+            borderRadius: 25
         },
     })
 

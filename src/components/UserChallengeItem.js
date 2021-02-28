@@ -19,7 +19,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const [clicked, setClicked] = useState(false)
     const [utcs, setUtcs] = useState([])
 
-    // console.log(completed)
+    console.log(userChallenge)
 
     // useEffect(() => {
     //         setUtcs(userChallenge.user_task_challenges)
@@ -110,8 +110,6 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     //         <TaskItem key={utc.id} utcs={utcs} setUtcs={setUtcs} setCompleted={setCompleted} completed={completed} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
     //      )
     // })
-
-    // console.log(utcs)
 
     const handleComplete = () => {
 
