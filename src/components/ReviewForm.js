@@ -54,6 +54,7 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
         color: #F7F8F3
         padding: 12px;
         align-self: center
+        font-weight: bold;
     `
     const ErrorSpan = styled(Span)`
         color: red
@@ -92,7 +93,7 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
 
         let formBody = {
             description: data.description,
-            rating: rating,
+            rating: challengeRating,
             challenge_id: challenge.id,
             user_id: currentUser.id
         }
@@ -110,7 +111,6 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
                     setReviews([newReview, ...reviews])
                     setCurrentUser(newReview.user)
                     setModalVisible(!modalVisible)
-                    Alert.alert('Thanks for your review!')
                 }
             })
     }
