@@ -25,6 +25,7 @@
 <!-- 6. Edit Profile  -->
 <!-- 2. Make it so that you don't have to retype when creating a challenge. Pressing the button triggers a reload. Just show them one by one.  -->
 <!-- 6. Maybe add stars to reviews????? -->
+2. Change checkbox library for task items on IOS
 
 
 Format Reviews -- not bad 
@@ -35,7 +36,6 @@ Bugs
 
 Next To Do:
 1. Have the challenge automatically become complete when you finish all the tasks
-2. Change checkbox library for task items on IOS
 4. Upload pictures 
 3. Add a chat feature 
 5. Full Auth

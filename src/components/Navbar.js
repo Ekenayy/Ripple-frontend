@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Route, Link } from "react-router-native";
 import styled from "styled-components";
-import { StyleSheet } from "react-native"
+import {Platform, StyleSheet } from "react-native"
 import { useHistory } from "react-router-dom";
 import { Ionicons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 

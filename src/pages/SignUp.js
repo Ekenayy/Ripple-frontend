@@ -59,11 +59,21 @@ function SignUp ( {currentUser, setCurrentUser }) {
         color: red
     `
 
+    const placeholderPicture = 'https://media.defense.gov/2020/Feb/19/2002251686/700/465/0/200219-A-QY194-002.JPG'
+
     const onSubmit = data => {
+        let formPicture
+        
+        if (!data.picture) {
+            formPicture = placeholderPicture
+        } else {
+            formPicture = data.picture
+        }
+
         let formBody = {
             name: data.name,
             email: data.email.toLowerCase(),
-            picture: data.picture
+            picture: formPicture
         }
 
 
