@@ -102,9 +102,6 @@ function SignUp ( {currentUser, setCurrentUser }) {
         }
     }, [currentUser])
 
-    console.log(errors)
-
-    
 
     return (
         <Form>
