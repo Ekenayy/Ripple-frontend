@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
@@ -39,6 +39,25 @@ function Opening ( {font} ) {
         padding: 12px;
         align-self: center;
     `
+    const load = async () => {
+        let thisToken = ''
+            try {
+                thisToken = await AsyncStorage.getItem('token') || 'none'  
+                
+                if (thisToken !== 'none') {
+                    setToken(thisToken)
+                }
+                // setToken(thisToken)
+            } catch(e) {
+                // read error
+                console.log(e.message)
+            }
+            return thisToken
+    }
+
+    useEffect( () => {
+        load()
+    }, [])  
 
     return (
         <MainView>

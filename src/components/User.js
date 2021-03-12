@@ -148,7 +148,8 @@ if (!thisUser) {
     return (
         <UserInfo>
                 <Avatar>
-                    {thisUser.picture ? <AvatarImage source={{uri: thisUser.picture}}/> : null}
+                    <AvatarImage source={{uri: thisUser.picture}}/>
+                    {/* {thisUser.picture ? <AvatarImage source={{uri: thisUser.picture}}/> : null} */}
                 </Avatar>
                 <Bio>
                     <NameText>{thisUser.name}</NameText>

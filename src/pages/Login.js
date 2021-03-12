@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import {useForm} from 'react-hook-form'
 import { BASE_URL, HEADERS } from '@env'
 import { useHistory } from "react-router-dom"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native'
 
-function Login ( {setCurrentUser, currentUser} ) {
+function Login ( {setCurrentUser, currentUser, token, setToken} ) {
 
     let history = useHistory()
     
@@ -18,6 +20,7 @@ function Login ( {setCurrentUser, currentUser} ) {
     `
     useEffect(() => {
         register('email')
+        register('password')
     }, [register])
 
     const Form = styled.View`
@@ -64,6 +67,7 @@ function Login ( {setCurrentUser, currentUser} ) {
 
         let formBody = {
             email: data.email.toLowerCase(),
+            password: data.password
         }
 
 
@@ -77,17 +81,28 @@ function Login ( {setCurrentUser, currentUser} ) {
                 if (newUser.errors) {
                     setErrors(newUser.errors)
                 } else {
-                    setCurrentUser(newUser) 
+                    setCurrentUser(newUser.user)
+                    // setToken(newUser.token)
+                    saveData(newUser.token)
                     setLoaded(true)
+                    // token = newUser.token
                 }
             })
+    }
 
-
+    const saveData = async (thisToken) => {
+        try {
+            await AsyncStorage.setItem('token', thisToken)
+            // Alert.alert('Data successfully saved')
+        } catch (e) {
+            // Alert.alert('Failed to save the data to the storage')
+        }
     }
 
     useEffect(() => {
             if (currentUser) {
-                history.push(`/user/${currentUser.id}`)
+                history.push('/challenges')
+                // history.push(`/user/${currentUser.id}`)
             }
     }, [loaded])
 
@@ -103,6 +118,7 @@ function Login ( {setCurrentUser, currentUser} ) {
             <Input 
                 placeholder="Passsword"
                 secureTextEntry={true}
+                onChangeText={text => setValue('password', text)}
             />
             {errors ? <ErrorSpan>{errors}</ErrorSpan> : null}
             <Button onPress={handleSubmit(onSubmit)}>

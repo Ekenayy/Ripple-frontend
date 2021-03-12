@@ -5,6 +5,7 @@ import UserChallengeItem from '../components/UserChallengeItem'
 import {useParams, useHistory } from "react-router-dom";
 import ChallengeItem from '../components/ChallengeItem'
 import User from '../components/User'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -16,12 +17,33 @@ function Profile ( {currentUser, setCurrentUser}) {
     const [selected, setSelected] = useState("")
     const [thisUser, setThisUser] = useState(null)
     const [modalVisible, setModalVisible] = useState(false)
+    const [token, setToken] = useState("")
 
     let params = useParams()
     let formId
     let userObj = {}
 
-    // console.log(currentUser)
+    const load = async () => {
+      let thisToken = ''
+        try {
+            thisToken = await AsyncStorage.getItem('token') || 'none'  
+            
+            if (thisToken !== 'none') {
+              setToken(thisToken)
+            }
+            // setToken(thisToken)
+        } catch(e) {
+          // read error
+          console.log(e.message)
+        }
+        return thisToken
+    }
+
+
+  useEffect( () => {
+    load()
+  }, [])  
+
 // If this user has just signed up the params id will be a number,
 // If the user clicks the profile button on the nav, params will be NaN which is falsy
     

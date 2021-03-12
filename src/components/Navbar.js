@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route, Link } from "react-router-native";
 import styled from "styled-components";
 import {Platform, StyleSheet } from "react-native"
@@ -9,11 +9,14 @@ import { Foundation } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { FontAwesome } from '@expo/vector-icons'; 
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Navbar ( {currentUser, setCurrentUser} ) {
     let history = useHistory()
 
     const [ios, setIos] = useState(Platform.OS === 'ios')
+
+    
 
     const NavText = styled.Text`
         font-size: 12px;
@@ -56,11 +59,40 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         },
     })
 
-    // 400
+    const load = async () => {
+        let thisToken = ''
+            try {
+                thisToken = await AsyncStorage.getItem('token') || 'none'  
+                
+                if (thisToken !== 'none') {
+                    setToken(thisToken)
+                }
+                // setToken(thisToken)
+            } catch(e) {
+                // read error
+                console.log(e.message)
+            }
+            return thisToken
+    }
+
+    useEffect( () => {
+        load()
+    }, []) 
+
+
+    const removeToken = async () => {
+        try {
+            await AsyncStorage.removeItem('token')
+        } catch(e) {
+          // remove error
+        }
+    
+        console.log('Done.')
+    }
 
     const handleSignOut = () => {
+        removeToken()
         setCurrentUser(null)
-
     }
 
     const BeforeUser = () => {

@@ -16,6 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -23,6 +24,7 @@ import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
+  const [token, setToken] = useState("")
 
   let history = useHistory()
 
@@ -36,7 +38,6 @@ function App() {
   `
 
   const Main = styled.ScrollView`
-
   `
 
   const styles = StyleSheet.create({
@@ -49,6 +50,27 @@ function App() {
     }
   })
   // height: 1200,
+
+  const load = async () => {
+    let thisToken = ''
+      try {
+          thisToken = await AsyncStorage.getItem('token') || 'none'  
+          
+          if (thisToken !== 'none') {
+            setToken(thisToken)
+          }
+          // setToken(thisToken)
+      } catch(e) {
+        // read error
+        console.log(e.message)
+      }
+      return thisToken
+  }
+
+
+  useEffect( () => {
+    load()
+  }, []) 
 
   if (!fontsLoaded) {
     return <AppLoading/>
@@ -74,7 +96,7 @@ function App() {
                 <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
               </Route>
               <Route exact path='/login'>
-                <Login setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                <Login token={token} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
               </Route>
               <Route exact path='/signup'>
                 <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
