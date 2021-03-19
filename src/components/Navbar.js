@@ -59,25 +59,25 @@ function Navbar ( {currentUser, setCurrentUser} ) {
         },
     })
 
-    const load = async () => {
-        let thisToken = ''
-            try {
-                thisToken = await AsyncStorage.getItem('token') || 'none'  
+    // const load = async () => {
+    //     let thisToken = ''
+    //         try {
+    //             thisToken = await AsyncStorage.getItem('token') || 'none'  
                 
-                if (thisToken !== 'none') {
-                    setToken(thisToken)
-                }
-                // setToken(thisToken)
-            } catch(e) {
-                // read error
-                console.log(e.message)
-            }
-            return thisToken
-    }
+    //             if (thisToken !== 'none') {
+    //                 setToken(thisToken)
+    //             }
+    //             // setToken(thisToken)
+    //         } catch(e) {
+    //             // read error
+    //             console.log(e.message)
+    //         }
+    //         return thisToken
+    // }
 
-    useEffect( () => {
-        load()
-    }, []) 
+    // useEffect( () => {
+    //     load()
+    // }, []) 
 
 
     const removeToken = async () => {

@@ -43,14 +43,6 @@ function ChallengeList ({currentUser, setCurrentUser}) {
       padding-bottom: 55px;
     `
 
-    // Also need to pass the ScrollView a prop of horizontal={true}
-    // const MainView = styled.ScrollView`
-    //   flex-direction: row;
-    //   flex-wrap: wrap
-    //   padding-bottom: 50px;
-    // `
-
-
   if (isLoaded) {
     const allChallenges = challenges.filter(c => {
       if (searched) {

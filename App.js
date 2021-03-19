@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import { NativeRouter, Switch, Route } from "react-router-native";
+import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 import { useHistory } from "react-router-dom";
 import Navbar from './src/components/Navbar'
 import Header from './src/components/Header'
@@ -17,14 +17,13 @@ import { StyleSheet} from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-
+import { BASE_URL } from '@env'
 
 function App() {
 
   const [currentUser, setCurrentUser] = useState(null)
   const [token, setToken] = useState("")
+  const [loggedIn, setLoggedIn] = useState(false)
 
   let history = useHistory()
 
@@ -59,7 +58,7 @@ function App() {
           if (thisToken !== 'none') {
             setToken(thisToken)
           }
-          // setToken(thisToken)
+          // setToken(thisToken) 
       } catch(e) {
         // read error
         console.log(e.message)
@@ -67,10 +66,28 @@ function App() {
       return thisToken
   }
 
-
   useEffect( () => {
     load()
   }, []) 
+
+  useEffect( () => {
+    if (token && !currentUser) {
+      fetch(`${BASE_URL}/token_show`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }, 
+      })
+        .then(r => r.json())
+        .then(user =>{
+          setCurrentUser(user)
+          setLoggedIn(true)
+          // <Redirect to="/challenges" />
+          // history.push('/challenges')
+        })
+    }
+  }, [token])
+
 
   if (!fontsLoaded) {
     return <AppLoading/>
@@ -87,7 +104,7 @@ function App() {
           <Main>
             <Switch>
               <Route exact path='/'>
-                <Opening font={Inter_900Black} currentUser={currentUser}/>
+                { loggedIn ? <Redirect to="/challenges" /> : <Opening font={Inter_900Black} currentUser={currentUser}/>}
               </Route> 
               <Route exact path='/welcome'>
                 <Welcome/>

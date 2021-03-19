@@ -25,10 +25,10 @@
 <!-- 6. Edit Profile  -->
 <!-- 2. Make it so that you don't have to retype when creating a challenge. Pressing the button triggers a reload. Just show them one by one.  -->
 <!-- 6. Maybe add stars to reviews????? -->
+<!-- Format Reviews -- not bad  -->
 2. Change checkbox library for task items on IOS
 
 
-Format Reviews -- not bad 
 5. Genre drop-downs for creating a challenge -- Eh
 
 Bugs

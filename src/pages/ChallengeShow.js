@@ -90,7 +90,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const MainText = styled.Text`
       font-size: 12px;
       color: #F7F8F3;   
-      `
+    `
 
     const TestView = styled.View`
       padding: 12px;
@@ -279,7 +279,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
             {allReviews}
           </ReviewSection> 
           :
-           null}
+          null}
         </MainView>
         )
       }
