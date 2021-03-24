@@ -7,7 +7,7 @@ There are a lot of mindfulness resources out there but few of them give you acti
 
 I built this app in about three weeks to fill some of these gaps and, though I didn't hit all of my lofty goals, I did create a pretty cool project skeleton and learned React Native along the way!  
 
-## Technologies
+## Technologies 
 
 #### Front-end
 * React Native via Expo 4.3.1
