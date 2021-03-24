@@ -27,15 +27,14 @@
 <!-- 6. Maybe add stars to reviews????? -->
 <!-- Format Reviews -- not bad  -->
 <!-- 5. Full Auth -->
-2. Change checkbox library for task items on IOS
+<!-- 2. Change checkbox library for task items on IOS -->
 
 
-5. Genre drop-downs for creating a challenge -- Eh
-
-Bugs
-1. There's a bug where I can't set Current user --- Don't delete any challenges
 
 Next To Do:
 1. Have the challenge automatically become complete when you finish all the tasks
-4. Upload pictures 
+2. Launch on TestFlight
+3. Allow user to upload pictures
 3. Add a chat feature 
+4. Genre drop-downs for creating a challenge
+
