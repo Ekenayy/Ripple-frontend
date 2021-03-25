@@ -16,24 +16,22 @@ function Navbar ( {currentUser, setCurrentUser} ) {
 
     const [ios, setIos] = useState(Platform.OS === 'ios')
 
-    
-
     const NavText = styled.Text`
         font-size: 12px;
         color: #F7F8F3;
         font-weight: bold;
     `
 
-    const Nav = styled.View`
-        position: absolute;
-        bottom: 0;
-        height: 55px;
-        width: 100%
-        display: flex;
-        flexDirection: row;
-        justifyContent: space-around;
-        background-color: #bab6b6;
-    `
+    // const Nav = styled.View`
+    //     position: absolute;
+    //     bottom: 0;
+    //     height: 55px;
+    //     width: 100%
+    //     display: flex;
+    //     flexDirection: row;
+    //     justifyContent: space-around;
+    //     background-color: #bab6b6;
+    // `
 
     const IconView = styled.View`
         flex-direction: column;
@@ -53,38 +51,19 @@ function Navbar ( {currentUser, setCurrentUser} ) {
             justifyContent: 'space-around',
             position: 'absolute',
             height: 55,
-            width: ios ? 420 : 395,
+            width: ios ? 415 : 395,
+            marginLeft: ios ? 5 : 0,
             bottom: 0,
-            borderRadius: 25
+            borderRadius: ios ? 20 : 25,
         },
     })
 
-    // const load = async () => {
-    //     let thisToken = ''
-    //         try {
-    //             thisToken = await AsyncStorage.getItem('token') || 'none'  
-                
-    //             if (thisToken !== 'none') {
-    //                 setToken(thisToken)
-    //             }
-    //             // setToken(thisToken)
-    //         } catch(e) {
-    //             // read error
-    //             console.log(e.message)
-    //         }
-    //         return thisToken
-    // }
-
-    // useEffect( () => {
-    //     load()
-    // }, []) 
 
 
     const removeToken = async () => {
         try {
             await AsyncStorage.removeItem('token')
         } catch(e) {
-          // remove error
         }
     
         console.log('Done.')

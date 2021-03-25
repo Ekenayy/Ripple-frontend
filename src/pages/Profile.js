@@ -34,7 +34,6 @@ function Profile ( {currentUser, setCurrentUser}) {
             // setToken(thisToken)
         } catch(e) {
           // read error
-          console.log(e.message)
         }
         return thisToken
     }
@@ -107,7 +106,6 @@ function Profile ( {currentUser, setCurrentUser}) {
         fetch(`${BASE_URL}/created_challenges/${formId}`, opts)
           .then(res => res.json())
           .then(fetchedCreatedChallenge => {
-            // console.log(fetchedCreatedChallenge)
             setCreatedChall(fetchedCreatedChallenge)
             setIsLoaded(true)
           })

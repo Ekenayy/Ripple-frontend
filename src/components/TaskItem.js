@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import CheckBox from '@react-native-community/checkbox';
 import { BASE_URL } from '@env'
 import { Checkbox } from 'react-native-paper';
 
@@ -62,7 +61,7 @@ function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) 
                 onValueChange={handleChangeValue}
             />
         } */}
-        {authorized ? <Checkbox 
+        {authorized ? <Checkbox.Android 
                 disabled={false}
                 onPress={handleChangeValue}
                 status={toggleCheckBox ? 'checked' : 'unchecked'}

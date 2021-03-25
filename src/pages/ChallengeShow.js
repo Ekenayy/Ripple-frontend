@@ -15,7 +15,6 @@ import TaskItem from '../components/TaskItem'
 
 function ChallengeShow ( {currentUser, setCurrentUser}) {
 
-  // AIzaSyDm0mYxB4CI2wZWva9b53HumoXnKvfeMMY
   let history = useHistory()
   let params = useParams()
 
@@ -26,8 +25,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   const [reviews, setReviews] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
-  let youtubeId
-
+  // let youtubeId
   useEffect(() => {
     const abortCtrl = new AbortController();
     const opts = { signal: abortCtrl.signal };
@@ -49,43 +47,21 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     return () => abortCtrl.abort()
   }, [])
 
-  // useEffect(() => {
-  //   const abortCtrl = new AbortController();
-  //   const opts = { signal: abortCtrl.signal };
-
-  //   fetch(`${BASE_URL}/users/${currentUser.id}`, opts)
-  //         .then(res => res.json())
-  //         .then(data => setCurrentUser(data))
-  //         .catch((error) => {
-  //           if (error.name == 'AbortError') {
-  //             console.log('request was cancelled');
-  //           }})
-          
-
-  //   return () => abortCtrl.abort()
-  // }, [clicked])
-
   useEffect(() => {
     const abortCtrl = new AbortController();
     const opts = { signal: abortCtrl.signal };
 
-       fetch(`${BASE_URL}/challenge_reviews/${params.id}`, opts)
+      fetch(`${BASE_URL}/challenge_reviews/${params.id}`, opts)
         .then(res => res.json())
         .then(data => setReviews(data))
         .catch((error) => {
           if (error.name == 'AbortError') {
             console.log('request was cancelled');
           }})
-    
-
-    
+  
     return () => abortCtrl.abort()
 
   }, [challenge])
-
-
-  
-  // console.log(challenge)
 
     const MainText = styled.Text`
       font-size: 12px;
@@ -158,7 +134,6 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       padding-bottom: 60px;
     `
 
-    // Return statement and functions are wrapped in a conditional 
   if (challenge) {
     // const url = challenge.video_url
     // const lastPart = url.split("=")
@@ -167,14 +142,10 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     
 
     const allTasks = challenge.task_challenges.map(tc => {
-      // debugger 
       return (
         <TaskView key={tc.id}>
           <TaskItem authorized={false} userTaskChallenge={tc.task} />
         </TaskView>
-      // <TestView key={tc.id}>      
-      //   <MainText>{tc.task.description}</MainText>
-      // </TestView>
       )
   })
   
