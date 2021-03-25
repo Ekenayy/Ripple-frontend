@@ -19,7 +19,7 @@ function Header () {
 
     const HeaderView = styled.View`
         margin-bottom: 0px;
-        margin-top: ${props => props.ios ? '20' : '10'} ;
+        margin-top: ${props => props.ios ? '20px' : '10px'} ;
         margin-left: 0px
         display: flex;
         flexDirection: row;

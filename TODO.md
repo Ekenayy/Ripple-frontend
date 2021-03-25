@@ -30,11 +30,9 @@
 <!-- 2. Change checkbox library for task items on IOS -->
 
 
-
 Next To Do:
-1. Have the challenge automatically become complete when you finish all the tasks
-2. Launch on TestFlight
-3. Allow user to upload pictures
+1. Launch on TestFlight
+2. Allow user to upload pictures
 3. Add a chat feature 
 4. Genre drop-downs for creating a challenge
 

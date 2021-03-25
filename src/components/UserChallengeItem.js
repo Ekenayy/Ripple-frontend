@@ -19,29 +19,6 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const [clicked, setClicked] = useState(false)
     const [utcs, setUtcs] = useState([])
 
-    console.log(userChallenge)
-
-    // useEffect(() => {
-    //         setUtcs(userChallenge.user_task_challenges)
-    // }, [userChallenge])
-
-    // useEffect(() => {
-    //     let incompleteTaskArr
-
-    //     utcs.map(utc => {
-    //         if (!utc.completed) {
-    //             incompleteTaskArr.push(utc)
-    //         }                
-    //     })
-
-    //     if (!incompleteTaskArr.length) {
-    //         setCompleted(true)
-    //     }
-        
-    // }, [utcs])
-
-    // console.log(utcs)
-
     const ItemView = styled.View`
         padding: 12px;
         width: ${props => props.deleted ? '0' : "100%"}
@@ -150,8 +127,6 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
 
     }
 
-    // console.log(userChall)
-    // console.log(currentUser.id == thisUser.id)
 
     
     return (
