@@ -13,7 +13,6 @@ function CreateChallenge ( { currentUser }) {
   const [assignments, setAssignments] = useState([])
   const [challengeClicked, setChallengeClicked] = useState(false)
   const [taskClicked, setTaskClicked] = useState(false)
-  const [finalClicked, setFinalClicked] = useState(false)
   const {register, handleSubmit, setValue} = useForm()
 
   let history = useHistory()

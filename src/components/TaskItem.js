@@ -5,7 +5,7 @@ import { Checkbox } from 'react-native-paper';
 
 
 
-function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) {
+function TaskItem ( {userTaskChallenge, authorized} ) {
 
     const [stateUTC, setStateUTC] = useState(userTaskChallenge)
     const [toggleCheckBox, setToggleCheckBox] = useState(stateUTC.completed)
@@ -39,28 +39,12 @@ function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) 
                 setStateUTC(fetchedUTC)
                 setToggleCheckBox(fetchedUTC.completed)
             })
-
-        // setToggleCheckBox(!toggleCheckBox)
-
     }
 
 
     return(
         
         <Details key={userTaskChallenge.id}>
-        {/* {authorized ? <CheckBox 
-                disabled={false}
-                onValueChange={handleChangeValue}
-                completed
-                value={toggleCheckBox}
-                onCheckColor="#5D5FEF"
-            /> :
-            <CheckBox 
-                disabled={true}
-                value={toggleCheckBox}
-                onValueChange={handleChangeValue}
-            />
-        } */}
         {authorized ? <Checkbox.Android 
                 disabled={false}
                 onPress={handleChangeValue}
@@ -68,7 +52,7 @@ function TaskItem ( {userTaskChallenge, authorized, completed, utcs, setUtcs} ) 
                 color="#5D5FEF"
                 uncheckedColor="#F7F8F3"
             /> :
-            <Checkbox
+            <Checkbox.Android
                 disabled={true}
                 status={toggleCheckBox}
                 onPress={handleChangeValue}

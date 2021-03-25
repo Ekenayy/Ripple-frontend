@@ -77,16 +77,10 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
-            <TaskItem key={utc.id} utcs={utcs} setUtcs={setUtcs} setCompleted={setCompleted} completed={completed} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
+            <TaskItem key={utc.id} utcs={utcs} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
         )
 
     })
-
-    // const tasksFromState = utcs.map(utc => {
-    //     return (
-    //         <TaskItem key={utc.id} utcs={utcs} setUtcs={setUtcs} setCompleted={setCompleted} completed={completed} authorized={currentUser.id == thisUser.id}  userTaskChallenge={utc}/>
-    //      )
-    // })
 
     const handleComplete = () => {
 

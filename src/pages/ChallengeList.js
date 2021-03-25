@@ -4,7 +4,7 @@ import Search from '../components/Search'
 import ChallengeItem from '../components/ChallengeItem'
 import { BASE_URL } from '@env'
 
-function ChallengeList ({currentUser, setCurrentUser}) {
+function ChallengeList () {
 
   const [challenges, setChallenges] = useState([])
   const [isLoaded, setLoaded] = useState(false)
@@ -41,6 +41,7 @@ function ChallengeList ({currentUser, setCurrentUser}) {
       flex-direction: row;
       flex-wrap: wrap
       padding-bottom: 55px;
+      justify-content: space-around;
     `
 
   if (isLoaded) {

@@ -119,7 +119,7 @@ function App() {
                 <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
               </Route>
               <Route exact path='/challenges'>
-                <ChallengeList currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                <ChallengeList />
               </Route> 
               <Route exact path='/challenges/:id'>
                 <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
