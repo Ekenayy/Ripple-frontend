@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { BASE_URL, HEADERS } from '@env'
 import {useForm} from 'react-hook-form'
 import { useHistory } from "react-router-dom"
-import TaskItem from '../components/TaskItem'
-
-
 
 function CreateChallenge ( { currentUser }) {
 

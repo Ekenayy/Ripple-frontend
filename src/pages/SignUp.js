@@ -19,6 +19,7 @@ function SignUp ( {currentUser, setCurrentUser }) {
         register('name')
         register('email')
         register('picture')
+        register('password')
     }, [register])
 
     const Form = styled.View`
@@ -73,7 +74,8 @@ function SignUp ( {currentUser, setCurrentUser }) {
         let formBody = {
             name: data.name,
             email: data.email.toLowerCase(),
-            picture: formPicture
+            picture: formPicture,
+            password: data.password
         }
 
 
@@ -116,6 +118,7 @@ function SignUp ( {currentUser, setCurrentUser }) {
             <Input 
                 placeholder="Passsword"
                 secureTextEntry={true}
+                onChangeText={text => setValue('password', text)}
             />
             <Input 
                 placeholder="Email"

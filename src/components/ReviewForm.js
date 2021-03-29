@@ -10,6 +10,7 @@ import { Rating, AirbnbRating } from 'react-native-ratings';
 function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, reviews, setReviews, setCurrentUser }) {
 
     const [errors, setErrors] = useState("")
+    const [ios, setIos] = useState(Platform.OS === 'ios')
 
     let challengeRating 
 
@@ -69,6 +70,10 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
         background-color: white;
         border-radius: 20px;
         align-items: center;
+    `
+
+    const ModalHolder = styled.View`
+        flex: 1;
         margin-top: 200px;
         width: 90%;
         align-self: center;
@@ -125,39 +130,33 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
                         setModalVisible(!modalVisible);
                     }}
             >
-                <ModalForm>
-                    {/* <RatingInput 
-                        placeholder="Rating (0-5)" 
-                        onChangeText={text => setValue('rating', text)}
-                        keyboardType="numeric"
-                    />                     */}
-                    {/* {errors.multipleErrorInut?.type === 'max' && "The max input is 5"}
-                    {errors.multipleErrorInut?.type =a== 'min' && "The min input is 1"} */}
-                    <Rating
-                        showRating
-                        // ratingBackgroundColor="#03DAC5"
-                        type="heart"
-                        imageSize={20}
-                        onFinishRating={rating => challengeRating = rating}
-                        style={{ paddingVertical: 5, marginBottom: 50, paddingLeft: 0, borderRadius: 20, height: 30 }}
-                    />
-                    <Input
-                        placeholder="Comment..." 
-                        multline={true}
-                        onChangeText={text => setValue('description', text)}
-                    />                
-                    {errors ? errors.map( (error) => <ErrorSpan key={error}>*{error}</ErrorSpan>) : null}
-                    <ButtonView>
-                        <Button onPress={handleSubmit(onSubmit)}>
-                            <Span>Submit rating</Span>
-                        </Button>
-                        <CancelButton onPress={() => setModalVisible(!modalVisible)}>
-                            <Span>Cancel</Span>
-                        </CancelButton>
-                    </ButtonView>
-                    
-                </ModalForm>
-                
+                <ModalHolder>
+                    <ModalForm>
+                        <Rating
+                            showRating
+                            // ratingBackgroundColor="#03DAC5"
+                            type="heart"
+                            imageSize={20}
+                            onFinishRating={rating => challengeRating = rating}
+                            style={{ paddingVertical: 5, marginBottom: 50, paddingLeft: 0, borderRadius: 20, height: 30 }}
+                        />
+                        <Input
+                            placeholder="Comment..." 
+                            multline={true}
+                            onChangeText={text => setValue('description', text)}
+                        />                
+                        {errors ? errors.map( (error) => <ErrorSpan key={error}>*{error}</ErrorSpan>) : null}
+                        <ButtonView>
+                            <Button onPress={handleSubmit(onSubmit)}>
+                                <Span>Submit rating</Span>
+                            </Button>
+                            <CancelButton onPress={() => setModalVisible(!modalVisible)}>
+                                <Span>Cancel</Span>
+                            </CancelButton>
+                        </ButtonView>
+                        
+                    </ModalForm>
+                </ModalHolder>
                 
             </Modal1>
     )

@@ -61,7 +61,7 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
     `
 
     const ErrorSpan = styled(Span)`
-        color: red
+        color: white
     `
     const onSubmit = data => {
 
