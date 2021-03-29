@@ -96,6 +96,8 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
 
     const onSubmit = data => {
 
+        setModalVisible(!modalVisible)
+
         let formBody = {
             description: data.description,
             rating: challengeRating,
@@ -115,10 +117,11 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
                 } else {
                     setReviews([newReview, ...reviews])
                     setCurrentUser(newReview.user)
-                    setModalVisible(!modalVisible)
                 }
             })
     }
+
+    console.log(modalVisible)
 
     return (
             <Modal1
@@ -133,10 +136,10 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
                 <ModalHolder>
                     <ModalForm>
                         <Rating
-                            showRating
+                            showRating={ios ? false : true}
                             // ratingBackgroundColor="#03DAC5"
                             type="heart"
-                            imageSize={20}
+                            imageSize={ ios ? 50 : 20}
                             onFinishRating={rating => challengeRating = rating}
                             style={{ paddingVertical: 5, marginBottom: 50, paddingLeft: 0, borderRadius: 20, height: 30 }}
                         />

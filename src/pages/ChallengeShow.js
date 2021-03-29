@@ -128,6 +128,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     const TaskView = styled.View`
       padding: 12px;
       padding-left: 5px;
+      padding-right: 20px;
     `
 
     const MainView = styled.View`

@@ -119,6 +119,8 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
 
     const handleEdit = data => {
 
+        setModalVisible(!modalVisible)
+        
         let formBody = {}
 
         for (const [key, value] of Object.entries(data)) {
@@ -135,7 +137,6 @@ function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisibl
             .then(r=> r.json())
             .then(updatedUser => {
                 setThisUser(updatedUser)
-                setModalVisible(!modalVisible)
             })
 
     }
