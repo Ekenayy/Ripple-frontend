@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useForm} from 'react-hook-form';
-import { ErrorMessage } from '@hookform/error-message';
 import { BASE_URL } from '@env'
 import { Alert } from 'react-native'
-import { Rating, AirbnbRating } from 'react-native-ratings';
-
+import { Rating } from 'react-native-ratings';
 
 function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, reviews, setReviews, setCurrentUser }) {
 
@@ -14,12 +12,6 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
 
     let challengeRating 
 
-    const Form = styled.View`
-        padding:12px;
-        flex-direction: row;
-        width: 100%;
-        justifyContent: space-around;
-    `
     const Input = styled.TextInput`
         background: #F3F5F6;
         width: 70%;
@@ -28,11 +20,7 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
         height: 30px;
         margin-bottom: 10px;
     `
-
-    const RatingInput = styled(Input)`
-        width: 25%
-    `
-
+    
     const ButtonView = styled.View`
         flex-direction: row;
     `
@@ -63,8 +51,7 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
     `
     const Modal1 = styled.Modal`
     `
-    // #FDB54A -- Nice orange
-    
+
     const ModalForm = styled.View`
         padding:10px;
         background-color: white;
@@ -85,7 +72,6 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
         font-weight: bold;
         margin-bottom: 10px;
     `
-
 
     const {register, handleSubmit, setValue} = useForm()
 // , {valueAsNumber: true, required: true, max: 5, min: 1}
@@ -121,8 +107,6 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
             })
     }
 
-    console.log(modalVisible)
-
     return (
             <Modal1
                     animationType="slide"
@@ -157,17 +141,10 @@ function ReviewForm ( {modalVisible, setModalVisible, currentUser, challenge, re
                                 <Span>Cancel</Span>
                             </CancelButton>
                         </ButtonView>
-                        
                     </ModalForm>
-                </ModalHolder>
-                
+                </ModalHolder> 
             </Modal1>
     )
-        
-
-
-
-
 }
 
 export default ReviewForm

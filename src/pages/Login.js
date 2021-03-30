@@ -70,7 +70,6 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
             password: data.password
         }
 
-
         fetch(`${BASE_URL}/login`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -105,6 +104,8 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
                 // history.push(`/user/${currentUser.id}`)
             }
     }, [loaded])
+
+    // console.log('Ekenayy@gmail.com'.toLowerCase())
 
     return (
         <Form>

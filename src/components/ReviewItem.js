@@ -42,9 +42,6 @@ function ReviewItem ( {review}) {
     const InfoView = styled.View`
     `
 
-
-    console.log(review)
-
     return( 
         <RatingView>
             <AuthorDetails onPress={() => history.push(`/user/${review.user.id}`)}>

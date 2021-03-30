@@ -20,6 +20,7 @@ function Profile ( {currentUser, setCurrentUser}) {
     let params = useParams()
     let formId
 
+
 // If this user has just signed up the params id will be a number,
 // If the user clicks the profile button on the nav, params will be NaN which is falsy
     

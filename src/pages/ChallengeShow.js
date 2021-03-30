@@ -206,10 +206,6 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
       
 
-   
-    // console.log(currentUser.challenge_ids)
-    // console.log(challenge.id)
-
 
         return (
         <MainView>

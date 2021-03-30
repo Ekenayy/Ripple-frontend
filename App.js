@@ -27,6 +27,7 @@ function App() {
 
   let history = useHistory()
 
+
   let [fontsLoaded] = useFonts({
     Inter_900Black,
   });

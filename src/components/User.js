@@ -9,6 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 function User( {thisUser, setThisUser, currentUser, modalVisible, setModalVisible} ) {
 
+    // console.log(thisUser)
     // useEffect(() => {
     //     fetch()
     // }, [])
