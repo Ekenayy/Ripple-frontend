@@ -19,17 +19,13 @@ function Profile ( {currentUser, setCurrentUser}) {
 
     let params = useParams()
     let formId
-
-
-// If this user has just signed up the params id will be a number,
-// If the user clicks the profile button on the nav, params will be NaN which is falsy
     
     if (parseInt(params.id)) {
       formId = parseInt(params.id)
     } else {
       formId = currentUser.id
     }
-    
+
     useEffect( () => {
       const abortCtrl = new AbortController()
       const opts = {signal: abortCtrl.signal}
@@ -158,6 +154,7 @@ function Profile ( {currentUser, setCurrentUser}) {
 
         // I can handle this with a filter and ternary expression. 
         // Completed and uncompeted challenges are still just UserChallenges
+
         const userChallengeList = userChall.filter( uc => {
           if (selected == 'finished') {
             return uc.completed
@@ -166,7 +163,7 @@ function Profile ( {currentUser, setCurrentUser}) {
           }
         })
           .map(uc => {
-              return <UserChallengeItem setUserChallList={setUserChall} userChallList={userChall} thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
+              return <UserChallengeItem setCurrentUser={setCurrentUser} setUserChallList={setUserChall} userChallList={userChall} thisUser={thisUser} currentUser={currentUser} key={uc.id} userChallenge={uc} challenge={uc.challenge}/>
           })
 
         return (

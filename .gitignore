@@ -13,4 +13,3 @@ web-build/
 .DS_Store
 
 #ignore .env files
-.env

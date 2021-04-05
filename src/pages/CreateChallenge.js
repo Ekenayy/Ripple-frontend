@@ -11,6 +11,7 @@ function CreateChallenge ( { currentUser }) {
   const [challengeClicked, setChallengeClicked] = useState(false)
   const [taskClicked, setTaskClicked] = useState(false)
   const {register, handleSubmit, setValue} = useForm()
+  const [errors, setErrors] = useState([])
 
   let history = useHistory()
   
@@ -90,9 +91,19 @@ function CreateChallenge ( { currentUser }) {
       height: 180px;
     `
 
-   
+    const ErrorSpan = styled(Span)`
+        color: white
+        font-size: 12px;
+    `
+
+    const ErrorView = styled.View`
+      padding: 12px;
+    `
+
 
     const onChallengeSubmit = data => {
+
+      setErrors([])
 
       let formBody = {
           name: data.name,
@@ -111,11 +122,21 @@ function CreateChallenge ( { currentUser }) {
         body: JSON.stringify(formBody)
       })
         .then(r => r.json())
-        .then(data => setChallenge(data))
-        .then(() => setChallengeClicked(true))
-
+        .then(data => {
+          if (data.errors) {
+            setErrors(data.errors)
+          } else
+          setChallenge(data)
+          // setChallengeClicked(true)
+        })
+        // .then(() => setChallengeClicked(true))
     }
 
+    useEffect(() => {
+      if (challenge) {
+        setChallengeClicked(true)
+      }
+    }, [challenge])
 
     const onTaskSubmit = data => {
 
@@ -168,11 +189,14 @@ function CreateChallenge ( { currentUser }) {
             body: JSON.stringify(formBody)
           })
             .then(r => r.json())
-            .then(data => console.log(data))
             .then(() => history.push(`/challenges/${challenge.id}`))
         })
 
       }
+
+      const errorsList = errors.map( (error) => {
+        return <ErrorSpan>{error}</ErrorSpan>
+      })
 
       function AssignmentList () {
         if (challengeClicked && !taskClicked) {
@@ -252,6 +276,11 @@ function CreateChallenge ( { currentUser }) {
                 <Span>Finalize</Span>
             </Button> 
             : null}
+            {errors ? <ErrorView>
+              {errorsList}
+            </ErrorView>
+            : null
+            }
       </Form>    
         )
 

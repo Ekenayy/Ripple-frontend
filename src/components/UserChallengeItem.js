@@ -9,7 +9,7 @@ import { Alert } from 'react-native'
 
 
 
-function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, setUserChallList, userChallList} ) {
+function UserChallengeItem ( {challenge, setCurrentUser, userChallenge, thisUser, currentUser, setUserChallList, userChallList} ) {
 
     let history = useHistory()
 
@@ -74,6 +74,7 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
         align-self: center;
     `
 
+
     const allTasks = userChallenge.user_task_challenges.map(utc => {
         
         return (
@@ -116,11 +117,19 @@ function UserChallengeItem ( {challenge, userChallenge, thisUser, currentUser, s
                 const newList = userChallList.filter(uc => {
                     return uc.id !== userChallenge.id
                 })
+                refreshUser()
+                setUserChallList(newList)
                 setDeleted(true)
             })
-
     }
 
+    const refreshUser = () => {
+        fetch(`${BASE_URL}/users/${currentUser.id}`)
+            .then(r => r.json())
+            .then(data => {
+                setCurrentUser(data)
+            })
+    }
 
     
     return (

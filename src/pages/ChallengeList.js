@@ -10,7 +10,9 @@ function ChallengeList () {
   const [isLoaded, setLoaded] = useState(false)
   const [searched, setSearched] = useState("")
 
+
   useEffect(() => {
+
     let mounted = true
 
       fetch(`${BASE_URL}/challenges`)

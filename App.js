@@ -27,6 +27,7 @@ function App() {
 
   let history = useHistory()
 
+  // console.log(currentUser.id)
 
   let [fontsLoaded] = useFonts({
     Inter_900Black,

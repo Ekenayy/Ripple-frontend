@@ -18,6 +18,8 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   let history = useHistory()
   let params = useParams()
 
+
+
   const [challenge, setChallenge] = useState()
   const [isLoaded, setIsLoaded] = useState(false)
   const [userChallenge, setUserChallenge] = useState()
@@ -87,9 +89,9 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       width: 150px;
       margin: 12px;
       border-radius:20px;
+      align-self:center
     `
     const ReviewButton = styled(Button)`
-      align-self: center
     `
 
     const Span = styled.Text`
@@ -195,7 +197,6 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
 
   }
 
-
       const allReviews = reviews.map(review => {
         return <ReviewItem key={review.id} review={review} />
       })
@@ -204,18 +205,8 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
         setModalVisible(true)
       })
 
-      
-
-
         return (
         <MainView>
-          {/* <VideoView>
-            <YouTube
-              apiKey={"AIzaSyDm0mYxB4CI2wZWva9b53HumoXnKvfeMMY"}
-              videoId={youtubeId}
-              fullscreen={false}
-            />
-          </VideoView> */}
           <ImageView>          
             <ChallengeImage source={{uri: challenge.photo_url}}/>
           </ImageView>
