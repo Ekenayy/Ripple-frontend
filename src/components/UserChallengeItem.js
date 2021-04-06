@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import CheckBox from '@react-native-community/checkbox';
 import TaskItem from './TaskItem'
 import {TouchableOpacity} from 'react-native'
 import { BASE_URL } from '@env'
@@ -131,7 +130,6 @@ function UserChallengeItem ( {challenge, setCurrentUser, userChallenge, thisUser
             })
     }
 
-    
     return (
             <ItemView clicked={clicked} deleted={deleted}> 
                 <TouchableOpacity onPress={() => history.push(`/challenges/${id}`)}> 

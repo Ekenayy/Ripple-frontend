@@ -219,7 +219,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
           </TestView>            
           {allTasks}
           {/* Conditionally rendering based off of custom serializer attribute challenge_ids and reviewed_challenge_ids */}
-          {currentUser.challenge_ids.includes(challenge.id) || clicked ? 
+          {currentUser.challenge_ids.includes(challenge.id) || clicked || currentUser.reviewed_challenge_ids.includes(challenge.id) ? 
           null
           : 
           <Button onPress={handlePress}>
