@@ -18,8 +18,6 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   let history = useHistory()
   let params = useParams()
 
-
-
   const [challenge, setChallenge] = useState()
   const [isLoaded, setIsLoaded] = useState(false)
   const [userChallenge, setUserChallenge] = useState()
@@ -167,7 +165,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     })
       .then(res => res.json())
       .then(fetchedUserChallenge => {
-        setUserChallenge(fetchedUserChallenge)
+        setUserChallenge(fetchedUserChallenge)``
         createUTC(fetchedUserChallenge)
         setCurrentUser(fetchedUserChallenge.user)
       })
