@@ -41,6 +41,12 @@ function App() {
   const Main = styled.ScrollView`
   `
 
+  // const LoadingText = styled.Text`
+  //   font-size: 12px;
+  //   color: #F7F8F3;
+  //   margin-left: 12px;
+  // `
+
   const styles = StyleSheet.create({
     background: {
       position: 'absolute',

@@ -25,6 +25,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
   const [reviews, setReviews] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
 
+  console.log(params.id)
   // let youtubeId
   useEffect(() => {
     const abortCtrl = new AbortController();
