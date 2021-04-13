@@ -10,9 +10,6 @@ import { Alert } from 'react-native'
 import CheckBox from '@react-native-community/checkbox';
 import TaskItem from '../components/TaskItem'
 
-
-
-
 function ChallengeShow ( {currentUser, setCurrentUser}) {
 
   let history = useHistory()
@@ -166,7 +163,8 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
     })
       .then(res => res.json())
       .then(fetchedUserChallenge => {
-        setUserChallenge(fetchedUserChallenge)``
+        console.log(fetchedUserChallenge)
+        setUserChallenge(fetchedUserChallenge)
         createUTC(fetchedUserChallenge)
         setCurrentUser(fetchedUserChallenge.user)
       })
