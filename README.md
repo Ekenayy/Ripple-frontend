@@ -5,7 +5,7 @@ App that allows users to take and create uplifting challenges with the ultimate 
 ## Introduction 
 There are a lot of mindfulness resources out there but few of them give you actionable, take-home exercises (called challenges in the App) to deepen your practice. Almost none of them give you a means to share your experiences with other users or review the effectiveness of an exercise. 
 
-I built this app in about three weeks to fill some of these gaps and, though I didn't hit all of my lofty goals, I did create a pretty cool project skeleton and learned React Native along the way!  
+I built this app in about three weeks to fill some of these gaps and, though I didn't hit all of my lofty goals, I did create a pretty cool project skeleton and learned React Native along the way! 
 
 ## Technologies 
 
@@ -22,6 +22,9 @@ I built this app in about three weeks to fill some of these gaps and, though I d
 ----
 
 ## Setup and Usage 
+
+[Just curious about how the app looks? Check out some screenshots here](https://github.com/Ekenayy/Ripple-frontend/tree/main/assets/screenshots)
+
 1. Clone this repo and to your desktop and run npm install to install all the dependencies.
 2. Clone the backend repo down to your desktop and run bundle install in your terminal.
 
