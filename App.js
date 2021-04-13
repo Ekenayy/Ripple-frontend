@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import {styled} from "styled-components";
 import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 import { useHistory } from "react-router-dom";
 import Navbar from './src/components/Navbar'
@@ -24,10 +24,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [token, setToken] = useState("")
   const [loggedIn, setLoggedIn] = useState(false)
-
-  let history = useHistory()
-
-  // console.log(currentUser.id)
 
   let [fontsLoaded] = useFonts({
     Inter_900Black,

@@ -11,7 +11,6 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
     let history = useHistory()
     
     const {register, handleSubmit, setValue} = useForm()
-    const [loaded, setLoaded] = useState(false)
     const [errors, setErrors] = useState("")
 
     const H1 = styled.Text`
@@ -80,11 +79,8 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
                 if (newUser.errors) {
                     setErrors(newUser.errors)
                 } else {
-                    setCurrentUser(newUser.user)
-                    // setToken(newUser.token)
                     saveData(newUser.token)
-                    setLoaded(true)
-                    // token = newUser.token
+                    setCurrentUser(newUser.user)
                 }
             })
     }
@@ -92,20 +88,16 @@ function Login ( {setCurrentUser, currentUser, token, setToken} ) {
     const saveData = async (thisToken) => {
         try {
             await AsyncStorage.setItem('token', thisToken)
-            // Alert.alert('Data successfully saved')
         } catch (e) {
-            // Alert.alert('Failed to save the data to the storage')
+            Alert.alert('Failed to save the data to the storage')
         }
     }
 
     useEffect(() => {
             if (currentUser) {
                 history.push('/challenges')
-                // history.push(`/user/${currentUser.id}`)
             }
-    }, [loaded])
-
-    // console.log('Ekenayy@gmail.com'.toLowerCase())
+    }, [currentUser])
 
     return (
         <Form>
