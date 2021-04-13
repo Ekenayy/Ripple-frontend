@@ -42,6 +42,7 @@ function Search ( {searched, setSearched} ) {
         color: #F7F8F3
         padding: 12px;
         align-self: center
+        font-family: ${props => props.theme.fontFamily};
     `
 
     const ButtonView = styled.View`

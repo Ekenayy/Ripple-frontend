@@ -30,9 +30,11 @@ function ChallengeItem ( {challenge} ) {
         font-size: 18px;
         font-weight:500;
         color: #F7F8F3;
+        font-family: ${props => props.theme.fontFamily};
     `
     const Span = styled.Text`
         color: #F7F8F3
+        font-family: ${props => props.theme.fontFamily};
     `
 
     return (

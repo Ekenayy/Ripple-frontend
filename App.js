@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {styled} from "styled-components";
+import  styled, { ThemeProvider } from "styled-components";
 import { NativeRouter, Switch, Route, Redirect } from "react-router-native";
 import { useHistory } from "react-router-dom";
 import Navbar from './src/components/Navbar'
@@ -15,7 +15,7 @@ import Opening from './src/pages/Opening'
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet} from 'react-native';
 import AppLoading from 'expo-app-loading';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { useFonts, Quicksand_700Bold} from '@expo-google-fonts/quicksand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '@env'
 
@@ -25,8 +25,11 @@ function App() {
   const [token, setToken] = useState("")
   const [loggedIn, setLoggedIn] = useState(false)
 
+  let history = useHistory()
+
+
   let [fontsLoaded] = useFonts({
-    Inter_900Black,
+    Quicksand_700Bold
   });
 
   const Body = styled.View`
@@ -98,43 +101,45 @@ function App() {
   } else {
   return (
       <NativeRouter>
-        <Body> 
-          <LinearGradient
-          // Background Linear Gradient
-          colors={['#5D5FEF', "#E379DF", "#FDB54A"]}
-          style={styles.background}
-            />
-          <Header/>
-          <Main>
-            <Switch>
-              <Route exact path='/'>
-                { loggedIn ? <Redirect to="/challenges" /> : <Opening font={Inter_900Black} currentUser={currentUser}/>}
-              </Route> 
-              <Route exact path='/welcome'>
-                <Welcome/>
-              </Route> 
-              <Route exact path='/user/:id'>
-                <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-              </Route>
-              <Route exact path='/login'>
-                <Login token={token} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-              </Route>
-              <Route exact path='/signup'>
-                <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-              </Route>
-              <Route exact path='/challenges'>
-                <ChallengeList />
-              </Route> 
-              <Route exact path='/challenges/:id'>
-                <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-              </Route> 
-              <Route exact path='/create_challenge'>
-                <CreateChallenge currentUser={currentUser}/>
-              </Route> 
-            </Switch> 
-          </Main>
-          <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
-        </Body>
+        <ThemeProvider theme={{fontFamily: 'Quicksand_700Bold'}}>
+          <Body> 
+            <LinearGradient
+            // Background Linear Gradient
+            colors={['#5D5FEF', "#E379DF", "#FDB54A"]}
+            style={styles.background}
+              />
+            <Header/>
+            <Main>
+              <Switch>
+                <Route exact path='/'>
+                  { loggedIn ? <Redirect to="/challenges" /> : <Opening currentUser={currentUser}/>}
+                </Route> 
+                <Route exact path='/welcome'>
+                  <Welcome/>
+                </Route> 
+                <Route exact path='/user/:id'>
+                  <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                </Route>
+                <Route exact path='/login'>
+                  <Login token={token} setToken={setToken} setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                </Route>
+                <Route exact path='/signup'>
+                  <SignUp currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                </Route>
+                <Route exact path='/challenges'>
+                  <ChallengeList />
+                </Route> 
+                <Route exact path='/challenges/:id'>
+                  <ChallengeShow setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+                </Route> 
+                <Route exact path='/create_challenge'>
+                  <CreateChallenge currentUser={currentUser}/>
+                </Route> 
+              </Switch> 
+            </Main>
+            <Navbar setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+          </Body>
+      </ThemeProvider>
       </NativeRouter>
     );
   }

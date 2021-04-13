@@ -17,7 +17,6 @@ function TaskItem ( {userTaskChallenge, authorized} ) {
 
     const Text = styled.Text`
         font-size: 14px;
-        font-weight: 600;
         color: #F7F8F3;
         align-self:center;
         padding-right: 20px;

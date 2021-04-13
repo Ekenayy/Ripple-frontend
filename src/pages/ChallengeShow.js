@@ -110,6 +110,7 @@ function ChallengeShow ( {currentUser, setCurrentUser}) {
       align-self: center;
       margin-bottom: 5px;
       margin-top: 5px;
+      font-family: ${props => props.theme.fontFamily};
     `
 
     const ReviewTitle = styled(Title)`
