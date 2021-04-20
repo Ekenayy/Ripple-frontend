@@ -25,6 +25,10 @@ I built this app in about three weeks to fill some of these gaps and, though I d
 
 [Just curious about how the app looks? Check out some screenshots here](https://github.com/Ekenayy/Ripple-frontend/tree/main/assets/screenshots)
 
+Or 
+
+[Checkout the product demo here](https://www.loom.com/share/d824f5cffb3f46b1adb4f2362f5df7fa)
+
 1. Clone this repo and to your desktop and run npm install to install all the dependencies.
 2. Clone the backend repo down to your desktop and run bundle install in your terminal.
 
