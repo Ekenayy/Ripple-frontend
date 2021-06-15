@@ -24,6 +24,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [token, setToken] = useState("")
   const [loggedIn, setLoggedIn] = useState(false)
+  const [dynoAwake, setDynoAwake] = useState(false)
 
   let history = useHistory()
 
@@ -39,6 +40,18 @@ function App() {
 
   const Main = styled.ScrollView`
   `
+
+  useEffect(() => {
+    if (!dynoAwake) {
+      fetch(`${BASE_URL}/challenges`)
+        .then(r => r.json())
+        .then(data => {
+          if (data) {
+            setDynoAwake(true)
+          }
+        })
+    }
+  }, [dynoAwake])
 
   // const LoadingText = styled.Text`
   //   font-size: 12px;
@@ -74,8 +87,10 @@ function App() {
   }
 
   useEffect( () => {
-    load()
-  }, []) 
+    if (dynoAwake){
+      load()
+    }
+  }, [dynoAwake]) 
 
   useEffect( () => {
     if (token && !currentUser) {
@@ -94,6 +109,7 @@ function App() {
         })
     }
   }, [token])
+
 
 
   if (!fontsLoaded) {
@@ -115,7 +131,7 @@ function App() {
                   { loggedIn ? <Redirect to="/challenges" /> : <Opening currentUser={currentUser}/>}
                 </Route> 
                 <Route exact path='/welcome'>
-                  <Welcome/>
+                  <Welcome dynoAwake={dynoAwake} setDynoAwake={setDynoAwake} />
                 </Route> 
                 <Route exact path='/user/:id'>
                   <Profile setCurrentUser={setCurrentUser} currentUser={currentUser}/>

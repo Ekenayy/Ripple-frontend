@@ -91,7 +91,7 @@ function SignUp ( {currentUser, setCurrentUser }) {
                     setErrors(newUser.errors)
                 } else {
                     setCurrentUser(newUser)
-                    setLoaded(true)
+                    // setLoaded(true)
                 }
             })
     }
