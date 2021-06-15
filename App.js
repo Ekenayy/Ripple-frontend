@@ -18,6 +18,9 @@ import AppLoading from 'expo-app-loading';
 import { useFonts, Quicksand_700Bold} from '@expo-google-fonts/quicksand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '@env'
+import {LogBox } from 'react-native';
+LogBox.ignoreLogs(['Native splash']);
+
 
 function App() {
 
